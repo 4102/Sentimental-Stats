@@ -12,6 +12,50 @@ src_managed/
 project/boot/
 project/plugins/project/
 
-# Scala-IDE specific
+
+# IntelliJ
+*.iml
+*.ipr
+*.iws
+.idea
+.idea/
+out
+/out/
 .scala_dependencies
 .worksheet
+.idea/mongoSettings.xml
+.idea_modules/
+
+# Eclipse
+.metadata
+bin/
+tmp/
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+.settings/
+.loadpath
+.recommenders
+ build
+.classpath
+.buildpath
+.factorypath
+.target
+.project
+.settings
+org.scala-ide.sdt.core/META-INF/MANIFEST.MF
+org.scala-ide.sdt.update-site/site.xml
+.recommenders/
+
+# Vim
+[._]*.s[a-w][a-z]
+[._]s[a-w][a-z]
+Session.vim
+.netrwhist
+*~
+tags
+
+# OS X
+.DS_Store
