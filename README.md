@@ -24,7 +24,7 @@ As envisioned now, the Sentimental Stats program will have several modules:
 
 * Check ["Issues"](https://github.com/4102/Sentimental-Stats/issues) on the GitHub site to see what everyone is working on. Please comment on an issue if something is blocking you, if you need help, or to make suggestions/call out problems in someone else's work.
 
-* If you want the rest of the group to see the changes you have commited and synced, go to `Repository > Create Pull Request`. This prompts everyone to `pull` your changes from the central repository.
+* If you want the rest of the group to see the changes you have commited and synced, go to `Repository > Create Pull Request`. This creates a place for discussing your changes; we hopefully won't need it very much.
 
 * If you want to add your changes to the `master branch`, go to `Branch > Merge into master`. If someone else has made conflicting changes Git can usually resolve them on its own; otherwise do you best and we'll figure it out together if necessary.
 
