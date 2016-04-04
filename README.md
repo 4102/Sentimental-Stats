@@ -1,7 +1,7 @@
 # Sentimental Stats
 This is the Scala team's term project for ITCS 4102/5102. The Sentimental Stats project will collect and analyze subjective impressions of a sports teams performance from news outlets and social media, and attempt to generate useful predictions of a team's future performance as evaluated through both those sentimental stats and publicly available 'objective' stats, such as margin-of-victory.
 
-## Informal Description/ Roadmap
+## Informal Description
 As envisioned now, the Sentimental Stats program will have several modules:
 
 1. **A Web Crawler** that finds and collects news and social media posts written about a given sports team's season. This may use Google's [Custom Search API](https://developers.google.com/custom-search/json-api/v1/overview), Twitter's REST/Streaming APIs, Reddit's API, and a simple single-domain web crawler for exploring previously-discovered 3rd-party sites.
@@ -14,7 +14,7 @@ As envisioned now, the Sentimental Stats program will have several modules:
 
 5. **Presentation Module** If we have time, it would be nice if the program could also present interesting results (correlations, overlaying graphs, bayesian analysis of simple hypotheses) after it has computed them. If we have even more time, publishing and automatically updating the results would be pretty cool.
 
-## How to Use Git[Hub] if you haven't before
+### How to Use Git[Hub] if you haven't before
 
 1. If you haven't used Git of GitHub before, install the [GitHub Desktop Client](https://desktop.github.com/).
 
@@ -28,7 +28,7 @@ As envisioned now, the Sentimental Stats program will have several modules:
 
 * If you want to add your changes to the `master branch`, go to `Branch > Merge into master`. If someone else has made conflicting changes Git can usually resolve them on its own; otherwise do you best and we'll figure it out together if necessary.
 
-## Who works on what
+### Who works on what
 
 For now, we're making an issue in GitHub for each module that needs to be worked on. Ideally, 
 * each issue will correspond to an important piece of the project,
