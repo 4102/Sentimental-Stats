@@ -16,11 +16,22 @@ As envisioned now, the Sentimental Stats program will have several modules:
 
 ## How to Use Git[Hub] if you haven't before
 
-If you haven't used Git of GitHub before, install the [GitHub Desktop Client](https://desktop.github.com/).
+1. If you haven't used Git of GitHub before, install the [GitHub Desktop Client](https://desktop.github.com/).
 
-Next, open it up and go to `File > Clone Repository` and choose `Sentimental Stats`. This will copy the project to your local computer. Now you can edit it directly with the editor/IDE of your choice.
+2. Next, open it up and go to `File > Clone Repository` and choose `Sentimental Stats`. This will copy the project to your local computer. Now you can edit it directly with the editor/IDE of your choice.
 
-You can save your changes with the `Commit and Sync to "branch"` button that appears at the bottom of the Desktop Client. **Do not commit directly to the master branch**. In fact, I may protect it so that you can't do that at all. Use `File > New Branch` to make a branch for yourself; name it whatever you want, and make your commits to that branch. This helps *a lot* if multiple people make conflicting changes to the same file.
+3. You can save your changes with the `Commit and Sync to "branch"` button that appears at the bottom of the Desktop Client. **Do not commit directly to the master branch**. In fact, I may protect it so that you can't do that at all. Use `File > New Branch` to make a branch for yourself; name it whatever you want, and make your commits to that branch. This helps *a lot* if multiple people make conflicting changes to the same file.
 
-If you want the rest of the group to see the changes you have commited and synced, go to `Repository > Create Pull Request`. This prompts everyone to `pull` your changes from the central repository.
-If you want to add your changes to the `master branch`, go to `Branch > Merge into master`. If someone else has made conflicting changes Git can usually resolve them on its own; otherwise do you best and we'll figure it out together if necessary.
+* Check ["Issues"](https://github.com/4102/Sentimental-Stats/issues) on the GitHub site to see what everyone is working on. Please comment on an issue if something is blocking you, if you need help, or to make suggestions/call out problems in someone else's work.
+
+* If you want the rest of the group to see the changes you have commited and synced, go to `Repository > Create Pull Request`. This prompts everyone to `pull` your changes from the central repository.
+
+* If you want to add your changes to the `master branch`, go to `Branch > Merge into master`. If someone else has made conflicting changes Git can usually resolve them on its own; otherwise do you best and we'll figure it out together if necessary.
+
+## Who works on what
+
+For now, we're making an issue in GitHub for each module that needs to be worked on. Ideally, 
+* each issue will correspond to an important piece of the project,
+* each issue will have one person primarily responsible for it, 
+* and each issue will explicitly demonstrate a few Scala features (and call them out in comments/documentation!)
+* but everyone can work on everything if they have the time.
