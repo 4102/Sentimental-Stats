@@ -1,4 +1,4 @@
-package term.project
+package term.project.SentimentalStats
 
 /**
   * Classes and methods needed to present the results of analysis.

@@ -1,4 +1,4 @@
-package term.project
+package term.project.SentimentalStats
 
 /**
   * The entry point and main object that executes the program.
@@ -22,7 +22,7 @@ object Main extends App {
   val teamName = args(0)
   val teamHome = args(1)
 
-  val results : Array[String] = WebCrawler.search(teamName, teamHome)
+  val results: List[Comment] = WebCrawler.search(teamName, teamHome)
 
   // logData(data)          // write to log file for debugging
 
@@ -33,4 +33,3 @@ object Main extends App {
   // updateDB(stats)        //
 
 }
-
