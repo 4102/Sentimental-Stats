@@ -14,13 +14,26 @@ As envisioned now, the Sentimental Stats program will have several modules:
 
 5. **Presentation Module** If we have time, it would be nice if the program could also present interesting results (correlations, overlaying graphs, bayesian analysis of simple hypotheses) after it has computed them. If we have even more time, publishing and automatically updating the results would be pretty cool.
 
-### How to Use Git[Hub] if you haven't before
+## How to Run
+
+1. [Download](https://github.com/4102/Sentimental-Stats/archive/master.zip) the project or clone the repo with `git clone https://github.com/4102/Sentimental-Stats.git`
+
+2. Download and install `Scala 2.11.7` and `Java 1.8`.
+
+3. Add the `lib/` directory to your dependencies/classpath
+..* SBT does this automatically.
+..* If using `scalac` from the command-line, add `-classpath path/to/project/root/lib` when it is invoked.
+..* On IntelliJ, go to `File > Project Structure > Modules`, select the `Dependencies` tab, select the `+` symbol in the bottom-left corner, choose `jars or directories`, and finally navigate to `lib/`. Phew.
+
+4. 
+
+### How to Use GitHub if you haven't before
 
 1. If you haven't used Git of GitHub before, install the [GitHub Desktop Client](https://desktop.github.com/).
 
 2. Next, open it up and go to `File > Clone Repository` and choose `Sentimental Stats`. This will copy the project to your local computer. Now you can edit it directly with the editor/IDE of your choice.
 
-3. You can save your changes with the `Commit and Sync to "branch"` button that appears at the bottom of the Desktop Client. **Do not commit directly to the master branch**. In fact, I may protect it so that you can't do that at all. Use `File > New Branch` to make a branch for yourself; name it whatever you want, and make your commits to that branch. This helps *a lot* if multiple people make conflicting changes to the same file.
+3. You can save your changes with the `Commit and Sync to "branch"` button that appears at the bottom of the Desktop Client. **Do not commit directly to the master branch**. Use `File > New Branch` to make a branch for yourself; name it whatever you want, and make your commits to that branch. This helps *a lot* if multiple people make conflicting changes to the same file.
 
 * Check ["Issues"](https://github.com/4102/Sentimental-Stats/issues) on the GitHub site to see what everyone is working on. Please comment on an issue if something is blocking you, if you need help, or to make suggestions/call out problems in someone else's work.
 

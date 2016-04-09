@@ -1,7 +1,8 @@
 name := "Sentimental-Stats"
 
-verion := "0.1"
+version := "0.1"
 
 scalaVersion := "2.11.7"
 
-libraryDependencies += "org.mongodb" %% "casbah" % "2.5.0"
+libraryDependencies += "com.typesafe.akka" %% "akka-actor" % "2.4.1"
+libraryDependencies += "org.mongodb.scala" %% "mongo-scala-driver" % "1.1.0"
