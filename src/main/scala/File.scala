@@ -66,18 +66,12 @@ class File(path: String, overwrite: Boolean) {
 
     val keys = for {
       line <- lines
-      after = line.indexOf("=")
-      key = line.substring(after).trim // remove extraneous whitespace
+      if line.matches("[=]")
+      afterThis = line.indexOf("=")
+      key = line.substring(afterThis).trim // remove extraneous whitespace
     } yield key
 
     return keys
   }
-
-}
-
-/**
-  * Companion object to File, contains useful File-related functions/"static methods".
-  */
-object File {
 
 }
