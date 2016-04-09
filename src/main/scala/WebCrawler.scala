@@ -11,6 +11,10 @@ object WebCrawler {
 
     val results: List[Comment] = TwitterQuery.searchFor(teamName)
 
+    println("Results:\n")
+    println(results.toString())
+    println(results.mkString)
+
     log.sample("Twitter Client Results:", results, 6)
 
     //results :+ reddit.query(teamName)

@@ -12,14 +12,14 @@ import collection.JavaConversions._
   */
 trait TwitterClient {
 
-  val lines: List[String] = new File("twitterConfig.txt", true).extractKeys() // don't overwrite!
+  val keys: List[String] = new File("twitterConfig.txt", true).extractKeys() // don't overwrite!
 
   val cb = new ConfigurationBuilder()
   cb.setDebugEnabled(true)
-    .setOAuthConsumerKey("2uME8OtjVYNpTyRZaU1Gtelsd")
-    .setOAuthConsumerSecret("IBwIjuNEmtW3uWCKSn4IGw9ScQa8BG14n7fa7TQD9n0YQ3lyXr")
-    .setOAuthAccessToken("717095311433469952-CDHgevAGNEM10B7oHZ2rF0NkK8JVnW8")
-    .setOAuthAccessTokenSecret("ch2m305L2uug3bQPaNOFgQ6CJkdiWBnzsPU4aWWCe0Vxg")
+    .setOAuthConsumerKey(keys.head)
+    .setOAuthConsumerSecret(keys(1))
+    .setOAuthAccessToken(keys(2))
+    .setOAuthAccessTokenSecret(keys(3))
 
   val twitter = new TwitterFactory(cb.build()).getInstance()
 }
