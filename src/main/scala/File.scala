@@ -9,21 +9,15 @@ import scala.io.Source
   *
   * Partly just a wrapper for a buffered Java FileWriter; Scala's std lib omits writing to files(!)
   */
-class File(path: String, overwrite: Boolean) {
+class File(path: String, append: Boolean) {
 
   // Opens a file with the Java FileWriter class, overwriting its contents if false
-  val writer = new BufferedWriter(new FileWriter(path, overwrite))
+  val writer = new BufferedWriter(new FileWriter(path, append))
 
   /**
     * Reads a file, mapping its lines to strings in a list.
-    *
-    * Doesn't actually use the FileWriter, but for simplicity I'm sticking it here.
     */
-  def readLines(): List[String] = {
-
-    val lines = Source.fromFile(path).getLines.toList
-    return lines
-  }
+  def readLines(): List[String] =  Source.fromFile(path).getLines.toList
 
   /**
     * Writes the elements of a list to a file, separated by newlines.
@@ -31,6 +25,7 @@ class File(path: String, overwrite: Boolean) {
   def writeLines(lines: List[Any]): Unit = {
 
     writer.write(lines.mkString("\n"))
+    writer.flush()
   }
 
   /**
@@ -39,14 +34,13 @@ class File(path: String, overwrite: Boolean) {
   def writeLine(line: String): Unit = {
 
     writer.write(line + "\n")
+    writer.flush()
   }
 
   /**
     * Close FileWriter
     */
-  def close(): Unit = {
-    writer.close()
-  }
+  def close(): Unit = writer.close()
 
   /**
     * Write first n elements of a list to log file, prefaced by a description.
@@ -62,16 +56,15 @@ class File(path: String, overwrite: Boolean) {
     */
   def extractKeys(): List[String] = {
 
-    val lines = readLines()
+    val delimiter = "="
 
     val keys = for {
-      line <- lines
-      if line.matches("[=]")
-      afterThis = line.indexOf("=")
-      key = line.substring(afterThis).trim // remove extraneous whitespace
-    } yield key
+      line <- readLines()
+      if line.contains(delimiter)
+    } yield line.drop(line.indexOf(delimiter) + 1).trim // get substring after "=" and toss whitespace.
+
+    println("Twitter Authorization Keys: " + keys.mkString(", "))
 
     return keys
   }
-
 }

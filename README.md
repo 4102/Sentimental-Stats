@@ -1,6 +1,7 @@
 # Sentimental Stats
 This is the Scala team's term project for ITCS 4102/5102. The Sentimental Stats project will collect and analyze subjective impressions of a sports teams performance from news outlets and social media, and attempt to generate useful predictions of a team's future performance as evaluated through both those sentimental stats and publicly available 'objective' stats, such as margin-of-victory.
 
+
 ## Informal Description
 As envisioned now, the Sentimental Stats program will have several modules:
 
@@ -46,6 +47,9 @@ As envisioned now, the Sentimental Stats program will have several modules:
 * If you want the rest of the group to see the changes you have commited and synced, go to `Repository > Create Pull Request`. This creates a place for discussing your changes; we hopefully won't need it very much.
 
 * If you want to add your changes to the `master branch`, go to `Branch > Merge into master`. If someone else has made conflicting changes Git can usually resolve them on its own; otherwise do you best and we'll figure it out together if necessary.
+
+## Dependencies
+Sentimental Stats uses Typesafe's Scala Logging library for logging, MongoDB and its Scala Driver library for data storage, and Twitter4J for accessing Twitter's REST API.
 
 ### Who works on what
 

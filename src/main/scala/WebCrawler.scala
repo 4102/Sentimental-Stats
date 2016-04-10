@@ -7,12 +7,12 @@ object WebCrawler {
 
   def search(teamName : String, teamHome : String): List[Comment] = {
 
-    val log = new File("log.txt", false)
+    val log = new File("log.txt", false) // overwriting previous contents
 
     val results: List[Comment] = TwitterQuery.searchFor(teamName)
 
     println("Results:\n")
-    println(results.toString())
+    //println(results.toString())
     println(results.mkString)
 
     log.sample("Twitter Client Results:", results, 6)
@@ -24,6 +24,7 @@ object WebCrawler {
   }
 
   // To-do: disambiguate queries
+  // implement asynchronous concurrent processes with Futures
   // GenerateQueries()
   // QueryOfficial()
   // QuerySportsReference()
@@ -36,4 +37,4 @@ object WebCrawler {
   *
   * Case classes are plain data containers with extra functionality for pattern matching.
   */
-case class Comment(author : String, time: String, text: String)
+case class Comment(time: String, text: String)
