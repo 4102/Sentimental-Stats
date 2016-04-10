@@ -11,9 +11,8 @@ package term.project.SentimentalStats
   */
 object Main extends App {
 
-  // Prints application name and any command-line arguments.
-  println("Sentimental Stats")
-  println("Arguments: " + (args mkString ", "))
+  // Prints any command-line arguments.
+  println("Arguments: " + args.mkString(", "))
 
   val teamName = "Tarheels"
   val teamHome = "Chapel Hill"
