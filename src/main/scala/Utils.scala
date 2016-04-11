@@ -1,10 +1,8 @@
 package term.project.SentimentalStats
 
 /**
-  * Container for useful, miscellaneous functions.
+  * Miscellaneous functions and such.
   */
 object Utils {
 
-  // use Option[] to safely get arguments passed to the main object
-  // def getArgs()
 }

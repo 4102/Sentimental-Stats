@@ -4,21 +4,18 @@ package term.project.SentimentalStats
 import twitter4j._
 import twitter4j.conf.ConfigurationBuilder
 
-import java.util // IDE may think this is unused, but getTweets() returns a util.List defined here.
+import java.util // IntelliJ warns this is unused, but getTweets() needs it.
 import collection.JavaConversions._ // Implicit conversions for Scala methods called on java collections.
 
 
 /**
   * Configure a Twitter4J twitter client with OAuth credentials from a file.
-  *
-  * Based on a Twitter4J tutorial: http://twitter4j.org/en/configuration.html
-  * Traits are basically classes that
+  * Based on a tutorial: http://twitter4j.org/en/configuration.html
   */
-trait TwitterClient {
+abstract class AuthenticatedTwitterClient {
 
-  private val keys = new File("twitterConfig.txt", true).extractKeys()
-
-  val cb = {
+  private val cb = {
+    val keys = KeyFile.extractKeys()
     new ConfigurationBuilder()
       .setDebugEnabled(true)
       .setOAuthConsumerKey(keys.head)
@@ -33,11 +30,11 @@ trait TwitterClient {
 /**
   * Search Twitter for tweets containing a term.
   */
-object TwitterQuery extends TwitterClient {
+object TwitterQuery extends AuthenticatedTwitterClient {
 
   def searchFor(searchTerm: String): List[Comment] = {
 
-    val query = new Query(searchTerm)
+    var query = new Query(searchTerm)
         query.setCount(100) // max allowed
 
     val results = twitter.search(query)

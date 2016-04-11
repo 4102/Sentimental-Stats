@@ -5,11 +5,11 @@ import java.io.{BufferedWriter, FileWriter}
 import scala.io.Source
 
 /**
-  * A class representing a file for IO.
+  * A class representing a file for IO operations.
   *
   * Partly just a wrapper for a buffered Java FileWriter; Scala's std lib omits writing to files(!)
   */
-class File(path: String, append: Boolean) {
+abstract class File(path: String, append: Boolean) {
 
   // Opens a file with the Java FileWriter class, overwriting its contents if false
   val writer = new BufferedWriter(new FileWriter(path, append))
@@ -41,6 +41,12 @@ class File(path: String, append: Boolean) {
     * Close FileWriter
     */
   def close(): Unit = writer.close()
+}
+
+/**
+  * File for storing samples of collected data for easy inspection.
+  */
+object DataFile extends File("dataSample.txt", false) {
 
   /**
     * Write first n elements of a list to log file, prefaced by a description.
@@ -50,20 +56,26 @@ class File(path: String, append: Boolean) {
     writer.write(desc + "\n")
     writeLines(data.take(n))
   }
+}
+
+/**
+  * File containing keys and configuration options.
+  */
+object KeyFile extends File("twitterConfig.txt", true) {
 
   /**
     * Extract a list of keys from a file
     */
   def extractKeys(): List[String] = {
 
-    val delimiter = "="
+    val delimiter = '='
 
     val keys = for {
       line <- readLines()
       if line.contains(delimiter)
-    } yield line.drop(line.indexOf(delimiter) + 1).trim // get substring after "=" and toss whitespace.
+    } yield line.drop(line.indexOf(delimiter) + 1).trim // get substring after '=' and toss whitespace.
 
-    println("Twitter Authorization Keys: " + keys.mkString(", "))
+    println("Keys: " + keys.mkString(", "))
 
     return keys
   }

@@ -7,15 +7,13 @@ object WebCrawler {
 
   def search(teamName : String, teamHome : String): List[Comment] = {
 
-    val log = new File("log.txt", false) // overwriting previous contents
-
     val results: List[Comment] = TwitterQuery.searchFor(teamName)
 
     println("Results:\n")
     //println(results.toString())
     println(results.mkString)
 
-    log.sample("Twitter Client Results:", results, 6)
+    DataFile.sample("Twitter Client Results:", results, 6)
 
     //results :+ reddit.query(teamName)
     //etc
