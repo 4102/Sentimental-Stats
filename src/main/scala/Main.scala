@@ -33,7 +33,7 @@ object Main extends App {
   */
 class Team(name: String, home: String)
 
-sealed abstract class TeamID(sport: Symbol, league: Symbol) extends Team(String, String)
+sealed abstract class TeamID(sport: Symbol, league: Symbol) // extends Team("Tarheels", "Chapel Hill")
 case class NCAAMTeam() extends TeamID('basketball, 'ncaam)
 case class NCAAWTeam() extends TeamID('basketball, 'ncaaw)
 case class NBATeam() extends TeamID('basketball, 'nba)
