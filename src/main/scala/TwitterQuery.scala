@@ -5,7 +5,7 @@ import twitter4j._
 import twitter4j.conf.ConfigurationBuilder
 
 import java.util // IntelliJ warns this is unused, but getTweets() needs it.
-import collection.JavaConversions._ // Implicit conversions for Scala methods called on java collections.
+import collection.JavaConversions._
 
 
 /**

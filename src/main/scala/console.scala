@@ -44,8 +44,7 @@ object Options extends ConsoleMessages with OptionKeys {
     */
   def optionsFromArgs(args: Array[String]): Map[Symbol, String] = {
 
-    println("\nArguments: ")
-    if (args.isEmpty) println("None." + argumentsMessage)
+    if (args.isEmpty) println("No arguments. " + argumentsMessage)
 
     matchArgs(Map(), args.toList)
   }

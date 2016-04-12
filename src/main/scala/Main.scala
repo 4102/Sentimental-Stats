@@ -16,7 +16,7 @@ object Main extends App {
 
   val results = WebCrawler.search(teams, options)
 
-  // updateDB(data)         // errors here scuttle everything
+  // updateDB(data)         // mongoDB scala driver, presumably
 
   // calculateStats(data)   // sentiment and statistical analysis
 
@@ -26,7 +26,7 @@ object Main extends App {
 }
 
 /**
-  * Representations of teams from different sports, for pattern-matching, etc.
+  * Representations of teams from different sports/leagues for pattern-matching, etc.
   */
 sealed class Team(sport: Symbol, league: Symbol)
 case class NCAAMTeam() extends Team('basketball, 'ncaam)
