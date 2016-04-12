@@ -44,7 +44,24 @@ abstract class File(path: String, append: Boolean) {
 }
 
 /**
-  * File for storing samples of collected data for easy inspection.
+  * File containing csv data.
+  *
+  * Format is assumed to be one record per line with each field separated by a comma.
+  */
+class CSVFile(path: String) extends File(path.toString, true) {
+
+  /**
+    * Extracts data from a csv file.
+    *
+    * Interprets each line as a record with two fields: the team's name and home.
+    */
+  def teamsFromCSV: List[String] = {
+    Nil //implement
+  }
+}
+
+/**
+  * File for storing text samples of collected data for easy inspection.
   */
 object DataFile extends File("dataSample.txt", false) {
 
@@ -60,6 +77,8 @@ object DataFile extends File("dataSample.txt", false) {
 
 /**
   * File containing keys and configuration options.
+  *
+  * Format is assumed to one key/value pair per line, separated by an '='.
   */
 object KeyFile extends File("twitterConfig.txt", true) {
 
@@ -70,13 +89,9 @@ object KeyFile extends File("twitterConfig.txt", true) {
 
     val delimiter = '='
 
-    val keys = for {
+    for {
       line <- readLines()
       if line.contains(delimiter)
     } yield line.drop(line.indexOf(delimiter) + 1).trim // get substring after '=' and toss whitespace.
-
-    println("Keys: " + keys.mkString(", "))
-
-    return keys
   }
 }

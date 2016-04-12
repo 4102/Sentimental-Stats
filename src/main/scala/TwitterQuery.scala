@@ -14,6 +14,7 @@ import collection.JavaConversions._ // Implicit conversions for Scala methods ca
   */
 abstract class AuthenticatedTwitterClient {
 
+  // about as functional as Java setters can be made.
   private val cb = {
     val keys = KeyFile.extractKeys()
     new ConfigurationBuilder()
@@ -32,23 +33,18 @@ abstract class AuthenticatedTwitterClient {
   */
 object TwitterQuery extends AuthenticatedTwitterClient {
 
-  def searchFor(searchTerm: String): List[Comment] = {
+  def searchFor(searchTerms: List[String]): List[Comment] = {
 
-    var query = new Query(searchTerm)
-        query.setCount(100) // max allowed
+    def singleQuery(term: String): List[Comment] = {
+      var query = new Query(term)
+      query.setCount(100) // max allowed
 
-    val results = twitter.search(query)
-                    .getTweets.toList
-                    .map( tweet => Comment(tweet.getCreatedAt.toString, tweet.getText) )
-                    :List[Comment]
+      twitter.search(query)
+        .getTweets.toList
+        .map(tweet => Comment(tweet.getCreatedAt.toString, tweet.getText))
+        : List[Comment]
+    }
 
-    /* Same function composition as a for-comprehension.
-    val results = (
-        for {tweet <- twitter.search(query).getTweets}
-         yield Comment(tweet.getCreatedAt.toString, tweet.getText)
-      ).toList: List[Comment]
-      */
-
-    return results
+    searchTerms.flatMap(x => singleQuery(x))
   }
 }
