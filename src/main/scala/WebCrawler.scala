@@ -7,17 +7,10 @@ package term.project.SentimentalStats
   */
 object WebCrawler {
 
-  def search(subjects: List[String], options: Map[Symbol, Any]): List[Comment] = {
+  def search(teams: List[Team], options: Map[Symbol, Any]): List[Comment] = {
 
-    val results = TwitterQuery.searchFor(subjects): List[Comment]
+    TwitterQuery.searchFor(teams.map(_.name)) // search for teams by their name
 
-    println("Results:\n")
-    //println(results.toString())
-    println(results.mkString)
-
-    DataFile.sample("Twitter Client Results:", results, 6)
-
-    return results
     //results :+ reddit.query(teamName)
     //etc
   }
@@ -37,3 +30,20 @@ object WebCrawler {
   * Case classes are plain data containers with extra functionality for pattern matching.
   */
 case class Comment(time: String, text: String)
+
+/**
+  * Representations of teams from different sports/leagues for pattern-matching, etc.
+  *
+  * Extending a sealed abstract class allows for exhaustive pattern matching.
+  * It might seems as though Team should be the base, but it is better as a case itself.
+  */
+sealed abstract class TeamBase
+case class Team(name: String, home: String) extends TeamBase
+
+/* implement
+class DisambiguatedTeam(sport: Symbol, league: Symbol) extends Team(:String, h)
+case class NCAAMTeam() extends DisambiguatedTeam('basketball, 'ncaam)
+case class NCAAWTeam() extends DisambiguatedTeam('basketball, 'ncaaw)
+case class NBATeam() extends DisambiguatedTeam('basketball, 'nba)
+case class WNBATeam() extends DisambiguatedTeam('basketball, 'wnba)
+*/
