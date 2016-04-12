@@ -4,6 +4,7 @@ package term.project.SentimentalStats
 import twitter4j._
 import twitter4j.conf.ConfigurationBuilder
 
+import java.time._
 import java.util // IntelliJ warns this is unused, but getTweets() needs it.
 import collection.JavaConversions._
 
@@ -35,6 +36,8 @@ abstract class AuthenticatedTwitterClient {
   */
 object TwitterQuery extends AuthenticatedTwitterClient {
 
+  val time = LocalDateTime.now()
+
   def searchFor(searchTerms: List[String]): List[Comment] = {
 
     def singleQuery(term: String): List[Comment] = {
@@ -44,7 +47,7 @@ object TwitterQuery extends AuthenticatedTwitterClient {
 
       twitter.search(query)
         .getTweets.toList
-        .map(tweet => Comment(tweet.getCreatedAt.toString, tweet.getText))
+        .map(tweet => Comment(Utils.toLocalDate(tweet.getCreatedAt), tweet.getText))
         : List[Comment]
     }
 
