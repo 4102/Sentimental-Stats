@@ -30,6 +30,8 @@ abstract class AuthenticatedTwitterClient {
 
 /**
   * Search Twitter for tweets containing a term.
+  *
+  * Keep in mind that twitter rate-limits searches to 180 per 15 minutes.
   */
 object TwitterQuery extends AuthenticatedTwitterClient {
 

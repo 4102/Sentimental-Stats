@@ -56,7 +56,7 @@ class CSVFile(path: String) extends File(path.toString, true) {
     * Interprets each line as a record with two fields: the team's name and home.
     */
   def teamsFromCSV: List[String] = {
-    Nil //implement
+    readLines().flatMap(_.split(",")).map(_.trim)
   }
 }
 

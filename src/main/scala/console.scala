@@ -93,7 +93,7 @@ object Options extends ConsoleMessages with OptionKeys {
   }
 
   /**
-    * Assemble a list of sports teams from different sources, depending on options.
+    * Assemble a list of sports teams from sources depending on user options.
     */
   def getTeams(options: Map[Symbol, String]): List[String] = {
 
@@ -111,7 +111,10 @@ object Options extends ConsoleMessages with OptionKeys {
       Nil // implement DB.teamsFromDB()
     } else Nil
 
-    {fileTeams ::: manualTeam ::: dbTeams}.distinct // combine and deduplicate
+    val allOptions = (fileTeams ::: manualTeam ::: dbTeams).distinct // combine and deduplicate
+    val default = new CSVFile("teams.csv").teamsFromCSV
+
+    if (allOptions.isEmpty) default else allOptions
   }
 
 }
