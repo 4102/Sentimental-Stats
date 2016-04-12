@@ -1,9 +1,9 @@
 package term.project.SentimentalStats
 
+import java.time._
+
 /**
   * Singleton object for crawling the web or otherwise obtaining data.
-  *
-  * Takes a list of team objects containing their name and
   */
 object WebCrawler {
 
@@ -29,7 +29,7 @@ object WebCrawler {
   *
   * Case classes are plain data containers with extra functionality for pattern matching.
   */
-case class Comment(time: String, text: String)
+case class Comment(time: LocalDate, text: String)
 
 /**
   * Representations of teams from different sports/leagues for pattern-matching, etc.
@@ -39,9 +39,9 @@ case class Comment(time: String, text: String)
   */
 sealed abstract class TeamBase
 case class Team(name: String, home: String) extends TeamBase
-
-/* implement
-class DisambiguatedTeam(sport: Symbol, league: Symbol) extends Team(:String, h)
+//case class ExpTeam(team: Team, x: Int) extends Team(team.name, team.home) // dependency injection
+/* gaaaaah
+case class DisambiguatedTeam(sport: Symbol, league: Symbol) extends Team(name, home)
 case class NCAAMTeam() extends DisambiguatedTeam('basketball, 'ncaam)
 case class NCAAWTeam() extends DisambiguatedTeam('basketball, 'ncaaw)
 case class NBATeam() extends DisambiguatedTeam('basketball, 'nba)
