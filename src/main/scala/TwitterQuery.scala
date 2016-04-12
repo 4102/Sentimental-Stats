@@ -31,7 +31,7 @@ abstract class AuthenticatedTwitterClient {
 /**
   * Search Twitter for tweets containing a term.
   *
-  * Keep in mind that twitter rate-limits searches to 180 per 15 minutes.
+  * Keep in mind that twitter rate-limits searches to 450 per 15 minutes.
   */
 object TwitterQuery extends AuthenticatedTwitterClient {
 
@@ -40,6 +40,7 @@ object TwitterQuery extends AuthenticatedTwitterClient {
     def singleQuery(term: String): List[Comment] = {
       var query = new Query(term)
       query.setCount(100) // max allowed
+      query.setResultType(Query.ResultType.popular) // as opposed to recent
 
       twitter.search(query)
         .getTweets.toList

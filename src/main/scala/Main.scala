@@ -14,7 +14,7 @@ object Main extends App {
   val options = Options.optionsFromArgs(args)
   val teams = Options.getTeams(options)
 
-  val results = WebCrawler.search(teams, options)
+  val results = WebCrawler.search(teams, options) // returns data from twitter, etc. for sentiment analysis
 
   // updateDB(data)         // mongoDB scala driver, presumably
 
@@ -24,13 +24,3 @@ object Main extends App {
 
   // presentResults()       // somehow
 }
-
-/**
-  * Representations of teams from different sports/leagues for pattern-matching, etc.
-  */
-sealed class Team(sport: Symbol, league: Symbol)
-case class NCAAMTeam() extends Team('basketball, 'ncaam)
-case class NCAAWTeam() extends Team('basketball, 'ncaaw)
-case class NBATeam() extends Team('basketball, 'nba)
-case class WNBATeam() extends Team('basketball, 'wnba)
-

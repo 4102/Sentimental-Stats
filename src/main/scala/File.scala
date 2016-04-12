@@ -51,12 +51,16 @@ abstract class File(path: String, append: Boolean) {
 class CSVFile(path: String) extends File(path.toString, true) {
 
   /**
-    * Extracts data from a csv file.
+    * Extracts team data from a csv file.
     *
     * Interprets each line as a record with two fields: the team's name and home.
     */
-  def teamsFromCSV: List[String] = {
-    readLines().flatMap(_.split(",")).map(_.trim)
+  def teamsFromCSV: List[Team] = {
+
+    for {
+      line <- readLines()
+      fields = line.split(",").map(_.trim)
+    } yield new Team(fields.head, fields(1))
   }
 }
 

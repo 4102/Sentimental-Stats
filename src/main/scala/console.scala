@@ -35,7 +35,7 @@ trait OptionKeys {
 /**
   * Options for running the project.
   *
-  * It's a trivial case, but multiple inheritance! Check it out!
+  * It's a trivial case, but woah multiple inheritance!
   */
 object Options extends ConsoleMessages with OptionKeys {
 
@@ -95,15 +95,17 @@ object Options extends ConsoleMessages with OptionKeys {
   /**
     * Assemble a list of sports teams from sources depending on user options.
     */
-  def getTeams(options: Map[Symbol, String]): List[String] = {
+  def getTeams(options: Map[Symbol, String]): List[Team] = {
 
     val fileTeams = options.get(fileKey) match {
       case Some(path) => new CSVFile(path).teamsFromCSV
       case None => Nil
     }
 
-    val manualTeam = options.get(teamKey) match {
-      case Some(team) => team.split(",").map(_.trim).toList
+    val manualTeam: List[Team] = options.get(teamKey) match {
+      case Some(team) =>
+        val args = team.split(",")
+        new Team(args.head, args(1)) :: Nil // List of one element
       case None => Nil
     }
 
