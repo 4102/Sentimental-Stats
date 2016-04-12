@@ -2,12 +2,14 @@ package term.project.SentimentalStats
 
 /**
   * Singleton object for crawling the web or otherwise obtaining data.
+  *
+  * Takes a list of team objects containing their name and
   */
 object WebCrawler {
 
-  def search(teamName : String, teamHome : String): List[Comment] = {
+  def search(subjects: List[String], options: Map[Symbol, Any]): List[Comment] = {
 
-    val results: List[Comment] = TwitterQuery.searchFor(teamName)
+    val results = TwitterQuery.searchFor(subjects): List[Comment]
 
     println("Results:\n")
     //println(results.toString())
@@ -15,10 +17,9 @@ object WebCrawler {
 
     DataFile.sample("Twitter Client Results:", results, 6)
 
+    return results
     //results :+ reddit.query(teamName)
     //etc
-
-    return results
   }
 
   // To-do: disambiguate queries

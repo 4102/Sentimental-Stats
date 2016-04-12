@@ -11,12 +11,10 @@ package term.project.SentimentalStats
   */
 object Main extends App {
 
-  val options: Map[Symbol, Any] = Options.getFromArgs(args)
+  val options = Options.optionsFromArgs(args)
+  val teams = Options.getTeams(options)
 
-  val teamName = "Tarheels"
-  val teamHome = "Chapel Hill"
-
-  val results = WebCrawler.search(teamName, teamHome)
+  val results = WebCrawler.search(teams, options)
 
   // updateDB(data)         // errors here scuttle everything
 
@@ -25,17 +23,14 @@ object Main extends App {
   // updateDB(stats)        // save results to db
 
   // presentResults()       // somehow
-
 }
 
 /**
-  * 
+  * Representations of teams from different sports, for pattern-matching, etc.
   */
-class Team(name: String, home: String)
-
-sealed abstract class TeamID(sport: Symbol, league: Symbol) // extends Team("Tarheels", "Chapel Hill")
-case class NCAAMTeam() extends TeamID('basketball, 'ncaam)
-case class NCAAWTeam() extends TeamID('basketball, 'ncaaw)
-case class NBATeam() extends TeamID('basketball, 'nba)
-case class WNBATeam() extends TeamID('basketball, 'wnba)
+sealed class Team(sport: Symbol, league: Symbol)
+case class NCAAMTeam() extends Team('basketball, 'ncaam)
+case class NCAAWTeam() extends Team('basketball, 'ncaaw)
+case class NBATeam() extends Team('basketball, 'nba)
+case class WNBATeam() extends Team('basketball, 'wnba)
 

@@ -22,7 +22,9 @@ As envisioned now, the Sentimental Stats program will have several modules:
 2. Download and install [sbt](http://www.scala-sbt.org/download.html)
 ...* This is the only way to build Scala while maintaining sanity.
 
-4. To compile and run, navigate to the repo's root using the command-line and enter `sbt run`
+4. To compile and run, navigate to the repo's root directory from the shell of your choice and enter `sbt run`
+...* To run with command-line arguments, wrap them in quotes like so: `sbt "run arg1 arg2`
+...* I don't recommend trying to build or run with IntelliJ or Eclipse.'
 
 ## How to View/Edit
 
@@ -32,7 +34,7 @@ As envisioned now, the Sentimental Stats program will have several modules:
 4. Add the `lib/` directory to your dependencies/classpath
 ...* Go to `File > Project Structure > Modules` and select the `Dependencies` tab
 ...* Select the `+` symbol, choose `jars or directories`,and finally navigate to `lib/`. Phew.
-5. The project doesn't reliably compile in IntelliJ, so I recommend using sbt instead.
+5. The project doesn't reliably compile or run in IntelliJ, so I recommend using sbt instead.
 
 ### How to Use GitHub if you haven't before
 
@@ -49,7 +51,7 @@ As envisioned now, the Sentimental Stats program will have several modules:
 * If you want to add your changes to the `master branch`, go to `Branch > Merge into master`. If someone else has made conflicting changes Git can usually resolve them on its own; otherwise do you best and we'll figure it out together if necessary.
 
 ## Dependencies
-Sentimental Stats uses Typesafe's Scala Logging library for logging, MongoDB and its Scala Driver library for data storage, and Twitter4J for accessing Twitter's REST API.
+Sentimental Stats uses MongoDB and its Scala Driver library for data storage, and Twitter4J for accessing Twitter's REST API.
 
 ### Who works on what
 
@@ -57,4 +59,4 @@ For now, we're making an issue in GitHub for each module that needs to be worked
 * each issue will correspond to an important piece of the project,
 * each issue will have one person primarily responsible for it, 
 * and each issue will explicitly demonstrate a few Scala features (and call them out in comments/documentation!)
-* but everyone can work on everything if they have the time.
+* but anyone can work on anything if they have the time.
