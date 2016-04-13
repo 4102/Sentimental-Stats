@@ -96,6 +96,7 @@ object KeyFile extends File("twitterConfig.txt", true) {
     for {
       line <- readLines()
       if line.contains(delimiter)
-    } yield line.drop(line.indexOf(delimiter) + 1).trim // get substring after '=' and toss whitespace.
+      key = line.drop(line.indexOf(delimiter) + 1)
+    } yield key.trim
   }
 }

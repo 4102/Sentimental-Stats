@@ -95,28 +95,25 @@ object Options extends ConsoleMessages with OptionKeys {
   /**
     * Assemble a list of sports teams from sources depending on user options.
     */
-  def getTeams(options: Map[Symbol, String]): List[Team] = {
+  def getTeams(opt: Map[Symbol, String]): List[Team] = {
 
-    val fileTeams = options.get(fileKey) match {
+    val fileTeams = opt.get(fileKey) match {
       case Some(path) => new CSVFile(path).teamsFromCSV
       case None => Nil
     }
 
-    val manualTeam: List[Team] = options.get(teamKey) match {
+    val dbTeams = if (opt.contains(dbKey)) Nil else Nil // implement DB.teamsFromDB()
+
+    val manualTeam: List[Team] = opt.get(teamKey) match {
       case Some(team) =>
         val args = team.split(",")
         List(new Team(args.head, args(1))) // list of one Team
       case None => Nil
     }
 
-    val dbTeams = if (options.contains(dbKey)) {
-      Nil // implement DB.teamsFromDB()
-    } else Nil
-
-    val allOptions = (fileTeams ::: manualTeam ::: dbTeams).distinct // combine and deduplicate
+    val allOptions = (fileTeams ::: dbTeams ::: manualTeam).distinct
     val default = new CSVFile("teams.csv").teamsFromCSV
 
     if (allOptions.isEmpty) default else allOptions
-  }
 
 }
