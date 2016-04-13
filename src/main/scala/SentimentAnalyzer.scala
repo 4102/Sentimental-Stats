@@ -12,18 +12,19 @@ import scala.collection.convert.wrapAll._
   * Created by Yagnesh on 4/13/2016.
   */
   object SentimentAnalyzer {
-  val props = new Properties()
+
+  val props = new Properties
   props.setProperty("annotators", "tokenize, ssplit, parse, sentiment")
   val pipeline: StanfordCoreNLP = new StanfordCoreNLP(props)
 
   def mainSentiment(input: String): Sentiment = Option(input) match {
     case Some(text) if !text.isEmpty => extractSentiment(text)
-    case _ => throw new IllegalArgumentException("input can't be null or empty")
+    case None => throw new IllegalArgumentException("input can't be null or empty")
   }
 
   def sentiment(input: String): List[(String, Sentiment)] = Option(input) match {
     case Some(text) if !text.isEmpty => extractSentiments(text)
-    case _ => throw new IllegalArgumentException("input can't be null or empty")
+    case None => throw new IllegalArgumentException("input can't be null or empty")
   }
 
   private def extractSentiment(text: String): Sentiment = {
