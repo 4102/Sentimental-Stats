@@ -55,7 +55,7 @@ object Options extends ConsoleMessages with OptionKeys {
     * Pattern matching over linked lists is a common Scala idiom, and basically requires tail recursion.
     * Note: the ++ operator combines maps while _removing duplicates_ in favor of the right-side map.
     */
-  @tailrec def matchArgs(options : Map[Symbol, String], args: List[String]): Map[Symbol, String] = {
+  @tailrec def matchArgs(options: Map[Symbol, String], args: List[String]): Map[Symbol, String] = {
 
     args match {
 
@@ -83,7 +83,9 @@ object Options extends ConsoleMessages with OptionKeys {
 
       case "--team" :: teamName :: teamHome :: tail =>
         println("Querying team: " + teamName + "/" + teamHome)
-        matchArgs(options ++ Map(teamKey -> {teamName + "," + teamHome}), tail)
+        matchArgs(options ++ Map(teamKey -> {
+          teamName + "," + teamHome
+        }), tail)
 
       case _ =>
         error(args.mkString("Invalid or malformed argument: ", ", ", "."))
@@ -116,4 +118,5 @@ object Options extends ConsoleMessages with OptionKeys {
 
     if (allOptions.isEmpty) default else allOptions
 
+  }
 }
