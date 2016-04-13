@@ -51,7 +51,10 @@ As envisioned now, the Sentimental Stats program will have several modules:
 * If you want to add your changes to the `master branch`, go to `Branch > Merge into master`. If someone else has made conflicting changes Git can usually resolve them on its own; otherwise do you best and we'll figure it out together if necessary.
 
 ## Dependencies
-Sentimental Stats uses MongoDB and its Scala Driver library for data storage, and Twitter4J for accessing Twitter's REST API.
+Sentimental Stats uses:
+...* MongoDB and its Scala Driver
+...* Twitter4J
+...* Standford's NLP library
 
 ### Who works on what
 

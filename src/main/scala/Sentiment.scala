@@ -1,5 +1,5 @@
 /**
-  * Created by Yagnesh on 4/13/2016.
+  * Created by Yagnesh on 4/13/2016
   */
 object Sentiment extends Enumeration {
   type Sentiment = Value

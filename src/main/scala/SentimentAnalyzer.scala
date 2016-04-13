@@ -1,11 +1,13 @@
 import java.util.Properties
 import Sentiment.Sentiment
+
 import edu.stanford.nlp.ling.CoreAnnotations
 import edu.stanford.nlp.neural.rnn.RNNCoreAnnotations
 import edu.stanford.nlp.pipeline.{Annotation, StanfordCoreNLP}
 import edu.stanford.nlp.sentiment.SentimentCoreAnnotations
 
 import scala.collection.convert.wrapAll._
+
 /**
   * Created by Yagnesh on 4/13/2016.
   */

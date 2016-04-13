@@ -5,6 +5,7 @@ version := "0.3"
 scalaVersion := "2.11.8"
 
 libraryDependencies += "org.mongodb.scala" %% "mongo-scala-driver" % "1.1.0"
+libraryDependencies += "edu.stanford.nlp" % "stanford-corenlp" % "3.6.0"
 
 // Allows you to cancel execution early with Ctrl + C
 cancelable in Global := true

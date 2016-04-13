@@ -105,7 +105,7 @@ object Options extends ConsoleMessages with OptionKeys {
     val manualTeam: List[Team] = options.get(teamKey) match {
       case Some(team) =>
         val args = team.split(",")
-        new Team(args.head, args(1)) :: Nil // List of one element
+        List(new Team(args.head, args(1))) // list of one Team
       case None => Nil
     }
 
