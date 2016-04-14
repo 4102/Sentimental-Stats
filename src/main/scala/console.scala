@@ -24,7 +24,7 @@ trait ConsoleMessages {
 /**
   * Symbols for use as keys in key/value pairs representing options.
   */
-trait OptionKeys {
+trait Keys {
   val verboseKey = 'verbose
   val testKey = 'test
   val dbKey = 'db
@@ -34,10 +34,8 @@ trait OptionKeys {
 
 /**
   * Options for running the project.
-  *
-  * It's a trivial case, but woah multiple inheritance!
   */
-object Options extends ConsoleMessages with OptionKeys {
+object Options extends ConsoleMessages with Keys {
 
   /**
     * Read, interpret and print interpretation of any command-line arguments.
@@ -51,9 +49,6 @@ object Options extends ConsoleMessages with OptionKeys {
 
   /**
     * Matches command-line arguments to valid options and stores them as a collection of key-value pairs.
-    *
-    * Pattern matching over linked lists is a common Scala idiom, and basically requires tail recursion.
-    * Note: the ++ operator combines maps while _removing duplicates_ in favor of the right-side map.
     */
   @tailrec def matchArgs(options: Map[Symbol, String], args: List[String]): Map[Symbol, String] = {
 
@@ -99,22 +94,20 @@ object Options extends ConsoleMessages with OptionKeys {
     */
   def getTeams(opt: Map[Symbol, String]): List[Team] = {
 
-    val fileTeams = opt.get(fileKey) match {
-      case Some(path) => new CSVFile(path).teamsFromCSV
-      case None => Nil
-    }
+    val fileTeams = opt.get(fileKey).map(new CSVFile(_).readTeams()).getOrElse(Nil)
 
-    val dbTeams = if (opt.contains(dbKey)) Nil else Nil // implement DB.teamsFromDB()
+    // val dbTeams = opt.get(dbKey).map(new DB.teamsFromDB).getOrElse(Nil) // implement
+    val dbTeams = if (opt.contains(dbKey)) Nil else Nil
 
-    val manualTeam: List[Team] = opt.get(teamKey) match {
+    val manualTeam = opt.get(teamKey) match {
       case Some(team) =>
-        val args = team.split(",")
-        List(new Team(args.head, args(1))) // list of one Team
+        val fields = team.split(",")
+        List(new Team(fields.head, fields(1)))
       case None => Nil
     }
 
     val allOptions = (fileTeams ::: dbTeams ::: manualTeam).distinct
-    val default = new CSVFile("teams.csv").teamsFromCSV
+    val default = new CSVFile("teams.csv").readTeams()
 
     if (allOptions.isEmpty) default else allOptions
 

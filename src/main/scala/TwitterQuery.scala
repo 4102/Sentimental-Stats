@@ -17,13 +17,13 @@ abstract class AuthenticatedTwitterClient {
 
   // about as functional as Java setters can be made.
   private val cb = {
-    val keys = KeyFile.extractKeys()
+    val keys = ConfigFile.extractValues()
     new ConfigurationBuilder()
-      .setDebugEnabled(true)
-      .setOAuthConsumerKey(keys.head)
-      .setOAuthConsumerSecret(keys(1))
-      .setOAuthAccessToken(keys(2))
-      .setOAuthAccessTokenSecret(keys(3))
+      .setDebugEnabled(keys.head.toBoolean)
+      .setOAuthConsumerKey(keys(1))
+      .setOAuthConsumerSecret(keys(2))
+      .setOAuthAccessToken(keys(3))
+      .setOAuthAccessTokenSecret(keys(4))
   }
 
   val twitter = new TwitterFactory(cb.build()).getInstance()
@@ -32,7 +32,7 @@ abstract class AuthenticatedTwitterClient {
 /**
   * Search Twitter for tweets containing a term.
   *
-  * Keep in mind that twitter rate-limits searches to 450 per 15 minutes.
+  * !!Twitter rate-limits searches to 450 per 15 minutes!!
   */
 object TwitterQuery extends AuthenticatedTwitterClient {
 
@@ -41,16 +41,15 @@ object TwitterQuery extends AuthenticatedTwitterClient {
   def searchFor(searchTerms: List[String]): List[Comment] = {
 
     def singleQuery(term: String): List[Comment] = {
-      var query = new Query(term)
+      val query = new Query(term)
       query.setCount(100) // max allowed
       query.setResultType(Query.ResultType.popular) // as opposed to recent
 
       twitter.search(query)
         .getTweets.toList
         .map(tweet => Comment(Utils.toLocalDate(tweet.getCreatedAt), tweet.getText))
-        : List[Comment]
     }
 
-    searchTerms.flatMap(x => singleQuery(x))
+    searchTerms.flatMap(singleQuery(_))
   }
 }
