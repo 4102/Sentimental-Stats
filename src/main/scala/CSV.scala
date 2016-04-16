@@ -23,6 +23,6 @@ case class CSV(rawData: List[String]) extends Formatted {
     * Converts parsed data to a list of teams.
     */
   def toListOfTeams: List[Team] = {
-    parsedData.map(field => Team(field(0), field(1)))
+    parsedData.map(field => Team(field(0), field(1), field(2), field(3)))
   }
 }

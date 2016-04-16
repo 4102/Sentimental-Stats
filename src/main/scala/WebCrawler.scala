@@ -7,18 +7,12 @@ object WebCrawler {
 
   def search(teams: List[Team], options: Map[String, String]): List[Comment] = {
 
-    TwitterQuery.searchFor(teams.map(_.name)) // search for teams by their name
-
-    SportsDBQuery.searchFor(teams)
-
-    //results :+ reddit.query(teamName)
-    //etc
+    SportsDatabase.getStatsFor(teams): List[String]
+    findComments(teams): List[Comment]
   }
 
-  // To-do: disambiguate queries
-  // implement asynchronous concurrent processes with Futures
-  // GenerateQueries()
-  // QueryOfficial()
-  // QuerySportsReference()
-
+  def findComments(teams: List[Team]): List[Comment] = {
+    TwitterQuery.search(teams.map(_.name))
+    // query reddit, fb, etc.
+  }
 }

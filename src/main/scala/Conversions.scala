@@ -7,7 +7,7 @@ import java.util.Date
   *
   * Note: the implicit conversions won't work unless this object is imported.
   */
-object Conversions {
+object ImplicitConversions {
 
   /**
     * Converts java.util.Date to the superior java.time.LocalDate

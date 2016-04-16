@@ -10,7 +10,7 @@ import scala.io.Source
   *
   * @param append overwrite file if false, append if true.
   */
-abstract class File(path: String, append: Boolean) {
+class File(path: String, append: Boolean) {
 
   val writer = new BufferedWriter(new FileWriter(path, append))
 
@@ -58,7 +58,7 @@ case object ConfigFile extends File("config.txt", true) {
 /**
   * Stores raw textual data for easy inspection.
   */
-case class SampleFile(path: String) extends File(path, false) {
+case object SampleFile extends File("sample.txt", false) {
 
   /**
     * Write n elements of a list to file, prefaced by a description.

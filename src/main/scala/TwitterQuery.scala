@@ -5,7 +5,7 @@ import twitter4j.conf.ConfigurationBuilder
 import twitter4j.Query.ResultType._
 
 import collection.JavaConversions._
-import term.project.SentimentalStats.Conversions._
+import term.project.SentimentalStats.ImplicitConversions._
 
 
 /**
@@ -44,7 +44,7 @@ trait AuthenticatedTwitterClient {
   */
 object TwitterQuery extends AuthenticatedTwitterClient {
 
-  def searchFor(searchTerms: List[String]): List[Comment] = {
+  def search(searchTerms: List[String]): List[Comment] = {
 
     def singleQuery(term: String): List[Comment] = {
       val query = setupQuery(term)

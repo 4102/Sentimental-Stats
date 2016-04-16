@@ -45,7 +45,8 @@ object Options {
   /**
     * Matches command-line arguments to valid options and stores them as a collection of key-value pairs.
     */
-  @tailrec private def matchArgs(options: Map[String, String], args: List[String]): Map[String, String] = {
+  @tailrec
+  private def matchArgs(options: Map[String, String], args: List[String]): Map[String, String] = {
 
     args match {
 
@@ -71,7 +72,7 @@ object Options {
         println("CSV file path: " + path)
         matchArgs(options ++ Map(Key.file -> path), tail)
 
-      case Key.team :: teamName :: teamHome :: tail =>
+      case Key.team :: teamName :: teamHome :: teamLeague :: teamSeason :: tail =>
         println("Querying team: " + teamName + "/" + teamHome)
         matchArgs(options ++ Map(Key.team -> {teamName + "," + teamHome}), tail)
 
@@ -97,7 +98,7 @@ object Options {
     val manualTeam = opt.get(Key.team) match {
       case Some(team) =>
         val fields = team.split(",")
-        List(Team(fields.head, fields.tail.head))
+        List(Team(fields.head, fields(1), fields(2), fields(3)))
       case None => Nil
     }
 

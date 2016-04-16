@@ -1,40 +1,61 @@
 package term.project.SentimentalStats
 
-import term.project.SentimentalStats.Sport._
-/**
-  * Representations of teams from different sports/leagues for pattern-matching, etc.
-  */
-class TeamID(val name: String,
-             val home: String,
-             val league: String,
-             val sport: Sport)
-
-object TeamID {
-
-  def apply(name: String,
-            home: String,
-            league: String,
-            sport: Sport
-           ): TeamID = {
-    new TeamID(name, home, league.toUpperCase, sport)
-  }
-}
+import term.project.SentimentalStats.League._
 
 /**
   *
   */
-trait Roster
+trait Roster {
+  //def roster // players on the team
+  //def players //players on the team that register minutes
+}
 
 /**
   *
   */
 trait Coaches {
-  val HeadCoach = ""// head coach at beginning of the season.
-  val SecondaryCoaches = ""// acting head coach at any point during the season.
+  //def headCoaches // head coaches at any point during season. Usually just one.
 }
 
-//class RichTeam(sport: Symbol, league: Symbol, team: Team)
-// extend Team
-// with Roster
-// with Coaches
-//
+/**
+  * Team for a particular season.
+  */
+class Team(
+    val name: String,
+    val home: String,
+    val league: League,
+    val season: Int)
+  extends Roster
+  with Coaches {
+
+  def stats = league.sport.stats
+}
+
+object Team {
+
+  /**
+    * Constructor for Team
+    */
+  def apply(
+      name: String,
+      home: String,
+      league: League,
+      season: Int): Team = {
+
+    new Team(name, home, league, season)
+  }
+
+  /**
+    * Constructor overload that takes strings for each param.
+    */
+  def apply(
+      name: String,
+      home: String,
+      leagueString: String,
+      seasonString: String): Team = {
+
+    val league = League.stringToLeague(leagueString)
+    val season = seasonString.toInt
+    new Team(name, home, league, season)
+  }
+}
