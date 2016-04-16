@@ -4,15 +4,16 @@ import java.time._
 import java.util.Date
 /**
   * Miscellaneous functions and such.
+  *
+  * Note: the implicit conversions won't work unless this object is imported.
   */
-object Utils {
+object ImplicitConversions {
 
   /**
     * Converts java.util.Date to the superior java.time.LocalDate
-    *
-    * Taken from https://stackoverflow.com/questions/21242110/
+    * Method body taken from http://stackoverflow.com/questions/21242110/
     */
-  def toLocalDate(date: Date): LocalDate = {
+  implicit def toLocalDate(date: Date): LocalDate = {
     date.toInstant.atZone(ZoneId.systemDefault()).toLocalDate
   }
 }

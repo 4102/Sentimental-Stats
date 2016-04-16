@@ -16,11 +16,7 @@ object Main extends App {
 
   val results = WebCrawler.search(teams, options) // returns data from twitter, etc. for sentiment analysis
 
-  // updateDB(data)         // mongoDB scala driver, presumably
-
   // calculateStats(data)   // sentiment and statistical analysis
-
-  // updateDB(stats)        // save results to db
 
   // presentResults()       // somehow
 }

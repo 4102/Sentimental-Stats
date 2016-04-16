@@ -1,52 +1,64 @@
 package term.project.SentimentalStats
 
 import java.io.{BufferedWriter, FileWriter}
-
 import scala.io.Source
 
 /**
   * A class representing a file for IO operations.
   *
-  * Partly just a wrapper for a buffered Java FileWriter; Scala's std lib omits writing to files(!)
-  * @param append overwrite if false, append if true.
+  * Wraps a buffered Java FileWriter for writing, which Scala's std lib omits.
+  *
+  * @param append overwrite file if false, append if true.
   */
-abstract class File(path: String, append: Boolean) {
+class File(path: String, append: Boolean) {
 
   val writer = new BufferedWriter(new FileWriter(path, append))
 
   /**
-    * Reads lines of a file to a list of strings.
+    * Reads lines of a file to strings in a list.
     */
-  def lines(): List[String] =  Source.fromFile(path).getLines.toList
+  def readLines(): List[String] =  Source.fromFile(path).getLines.toList
 
   /**
-    * Writes elements of a list to lines of a file.
+    * Writes elements of a list to lines in a file.
     */
-  def writeLines(lines: List[Any]): Unit = {
+  def writeLines(lines: Traversable[Any]): Unit = {
 
     writer.write(lines.mkString("\n"))
-    writer.flush()
   }
 
+  /**
+    * Flushes the buffer.
+    */
+  def flush(): Unit = writer.flush()
+
+  /**
+    * Closes the file.
+    */
   def close(): Unit = writer.close()
 }
 
 /**
   * Retrieves data stored in csv format.
   */
-case class CSVFile(path: String)
-  extends File(path.toString, true)
-  with SimpleCSVParser {
+class CSVFile(path: String) extends File(path, true) {
 
-  def readTeams(): List[Team] = {
-    parse(lines()).map(x => new Team(x.head, x.last))
-  }
+  val data = CSV(readLines())
+
+}
+
+/**
+  * Contains keys and configuration options.
+  */
+case object ConfigFile extends File("config.txt", true) {
+
+  lazy val data = Pairs(readLines())
 }
 
 /**
   * Stores raw textual data for easy inspection.
   */
-case object DataFile extends File("dataSample.txt", false) {
+case object SampleFile extends File("sample.txt", false) {
 
   /**
     * Write n elements of a list to file, prefaced by a description.
@@ -55,21 +67,6 @@ case object DataFile extends File("dataSample.txt", false) {
 
     writer.write(description + "\n")
     writeLines(data.take(n))
-  }
-}
-
-/**
-  * Contains keys and configuration options.
-  */
-case object ConfigFile
-  extends File("config.txt", true)
-    with KeyValueParser {
-
-  def extractKeys(): List[String] = {
-    getKeys(lines())
-  }
-
-  def extractValues(): List[String] = {
-    getValues(lines())
+    flush()
   }
 }

@@ -1,32 +1,20 @@
 package term.project.SentimentalStats
 
-import java.time._
-
-case class Comment(time: LocalDate, text: String)
-
 /**
-  * Representations of teams from different sports/leagues for pattern-matching, etc.
-  */
-case class Team(name: String, home: String)
-//case class RichTeam(sport: Symbol, league: Symbol, team: Team)
-
-/**
-  *
+  * Retrieves content from web resources
   */
 object WebCrawler {
 
-  def search(teams: List[Team], options: Map[Symbol, Any]): List[Comment] = {
+  def search(teams: List[Team], options: Map[String, String]): List[Comment] = {
 
-    TwitterQuery.searchFor(teams.map(_.name)) // search for teams by their name
+    val stats = SportsDatabase.getStatsFor(teams): List[String]
+    SampleFile.sample("Stats", stats, 10)
 
-    //results :+ reddit.query(teamName)
-    //etc
+    findComments(teams): List[Comment]
   }
 
-  // To-do: disambiguate queries
-  // implement asynchronous concurrent processes with Futures
-  // GenerateQueries()
-  // QueryOfficial()
-  // QuerySportsReference()
-
+  def findComments(teams: List[Team]): List[Comment] = {
+    Twitter.search(teams.map(_.name))
+    // query reddit, fb, etc.
+  }
 }
