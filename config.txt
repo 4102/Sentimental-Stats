@@ -1,4 +1,4 @@
-Enable Debug          = true
+Debug Enabled         = true
 Oauth Consumer Key    = 2uME8OtjVYNpTyRZaU1Gtelsd
 Oauth Consumer Secret = IBwIjuNEmtW3uWCKSn4IGw9ScQa8BG14n7fa7TQD9n0YQ3lyXr
 Oauth Access Token    = 717095311433469952-CDHgevAGNEM10B7oHZ2rF0NkK8JVnW8
