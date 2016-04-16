@@ -7,12 +7,14 @@ object WebCrawler {
 
   def search(teams: List[Team], options: Map[String, String]): List[Comment] = {
 
-    SportsDatabase.getStatsFor(teams): List[String]
+    val stats = SportsDatabase.getStatsFor(teams): List[String]
+    SampleFile.sample("Stats", stats, 10)
+
     findComments(teams): List[Comment]
   }
 
   def findComments(teams: List[Team]): List[Comment] = {
-    TwitterQuery.search(teams.map(_.name))
+    Twitter.search(teams.map(_.name))
     // query reddit, fb, etc.
   }
 }

@@ -42,7 +42,7 @@ trait AuthenticatedTwitterClient {
 /**
   * Query Twitter for tweets containing a term.
   */
-object TwitterQuery extends AuthenticatedTwitterClient {
+object Twitter extends AuthenticatedTwitterClient {
 
   def search(searchTerms: List[String]): List[Comment] = {
 

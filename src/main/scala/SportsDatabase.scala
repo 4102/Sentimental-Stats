@@ -1,7 +1,6 @@
 package term.project.SentimentalStats
 
 import scala.io.Source
-import term.project.SentimentalStats.Sport._
 
 /**
   * Handles queries to sportsdatabase.com
@@ -9,35 +8,42 @@ import term.project.SentimentalStats.Sport._
 object SportsDatabase {
 
   val baseURL = "http://api.sportsdatabase.com/"
-  val inputFormat = "/query.json?sdql="
-  val outputFormat = "&output=json&api_key=guest"
+  val queryFormat = "/query?output=json&sdql=" // default, json, what else?
+  val apiKey = "&api_key=guest"
 
   def getStatsFor(teams: List[Team]): List[String] = {
 
-    def query(team: Team): String = {
-      val request = escape(getURL(team))
+    def singleQuery(team: Team): String = {
+      val request = getQueryURL(team)
+      println(request)
       Source.fromURL(request).mkString
     }
 
-    teams.map(team => query(team))
+    teams.map(team => singleQuery(team))
   }
 
-  private def getURL(team: Team): String = {
+  private def getQueryURL(team: Team): String = {
+
+    val queryBody = escapeForURL(
+      team.stats.mkString(",")
+        + "@team="
+        + team.name
+        + " and season="
+        + team.season
+    )
 
     ( baseURL
       + team.league.name
-      + inputFormat
-      + team.stats.mkString(",")
-      + "@team=" + team.name
-      + " and season=" + team.season
-      + outputFormat
+      + queryFormat
+      + queryBody
+      + apiKey
       )
   }
 
   /**
-    * Percent-encode an SDQL query for use in a URL
+    * Percent-encode an SDQL query for use in URL
     */
-  private def escape(rawURL: String): String = {
+  private def escapeForURL(raw: String): String = {
 
     object Encoding {
       val comma = "%2C"
@@ -46,7 +52,7 @@ object SportsDatabase {
       val space = "%20"
     }
 
-    rawURL.replaceAll(",", Encoding.comma)
+    raw.replaceAll(",", Encoding.comma)
       .replaceAll("@", Encoding.at)
       .replaceAll("=", Encoding.equals)
       .replaceAll(" ", Encoding.space)

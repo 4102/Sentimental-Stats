@@ -1,6 +1,7 @@
 package term.project.SentimentalStats
 
 import term.project.SentimentalStats.Sport._
+import scala.sys.error
 
 /**
   * Valid leagues
@@ -16,13 +17,12 @@ object League {
   case object NHL extends League("nhl", Hockey)
 
   def stringToLeague(leagueName: String): League = {
-    println("NBA.toString = " + NBA.toString)
-    println("leagueName = " + leagueName)
 
     val leagues = Array(NCAABB, NBA, NCAAF, NFL, MLB, NHL)
+
     leagues.find(leagueName.toUpperCase == _.toString) match {
       case Some(league) => league
-      case None => sys.error("Could not read league from file")
+      case None => error("Could not identify league. Please re-enter.")
     }
   }
 }
