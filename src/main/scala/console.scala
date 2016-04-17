@@ -106,6 +106,5 @@ object Options {
     val default = new CSVFile("teams.csv").data.toListOfTeams
 
     if (allOptions.isEmpty) default else allOptions
-
   }
 }

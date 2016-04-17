@@ -8,36 +8,31 @@ import scala.io.Source
 object SportsDatabase {
 
   val baseURL = "http://api.sportsdatabase.com/"
-  val queryFormat = "/query?output=json&sdql=" // default, json, what else?
+  val queryFormat = "/query.json?output=json&sdql="
   val apiKey = "&api_key=guest"
 
-  def getStatsFor(teams: List[Team]): List[String] = {
+  def getRecord(team: Team): String = {
 
-    def singleQuery(team: Team): String = {
       val request = getQueryURL(team)
-      println(request)
       Source.fromURL(request).mkString
-    }
-
-    teams.map(team => singleQuery(team))
   }
 
   private def getQueryURL(team: Team): String = {
 
     val queryBody = escapeForURL(
-      team.stats.mkString(",")
+      team.league.sport.stats.mkString(",")
         + "@team="
         + team.name
         + " and season="
-        + team.season
+        + team.seasonYear
     )
 
     ( baseURL
-      + team.league.name
-      + queryFormat
-      + queryBody
-      + apiKey
-      )
+    + team.league.name
+    + queryFormat
+    + queryBody
+    + apiKey
+    )
   }
 
   /**
