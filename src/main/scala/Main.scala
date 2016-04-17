@@ -12,11 +12,17 @@ package term.project.SentimentalStats
 object Main extends App {
 
   val options = Options.optionsFromArgs(args)
+
   val teams = Options.getTeams(options)
 
-  val results = WebCrawler.search(teams, options) // returns data from twitter, etc. for sentiment analysis
+  // each Team in teams has a field:
+  // comments: List[Comment] with all the comments referencing them
+  // record: String, which is the data from sportsdb in plain JSON
+  //
+  // Each Comment in comments has two fields: a date and a message body
+  // Each Record had a header and a bunch of columns with the numbers in them. The first one is dates of the games.
 
-  // calculateStats(data)   // sentiment and statistical analysis
+  // calculateStats(teams)   // sentiment and statistical analysis
 
   // presentResults()       // somehow
 }

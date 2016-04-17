@@ -1,3 +1,4 @@
+date
 points
 assists
 turnovers
@@ -5,16 +6,12 @@ steals
 blocks
 defensive rebounds
 offensive rebounds
-fast break pts
 three pointers made
 three pointers attempted
 wins
 losses
 streak
 game number
-rank
 line
-lead changes
 margin at the half
 margin
-biggest lead

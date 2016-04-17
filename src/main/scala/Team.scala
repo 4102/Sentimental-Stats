@@ -3,32 +3,19 @@ package term.project.SentimentalStats
 import term.project.SentimentalStats.League._
 
 /**
-  *
-  */
-trait Roster {
-  //def roster // players on the team
-  //def players //players on the team that register minutes
-}
-
-/**
-  *
-  */
-trait Coaches {
-  //def headCoaches // head coaches at any point during season. Usually just one.
-}
-
-/**
   * Team for a particular season.
   */
 class Team(
     val name: String,
     val home: String,
     val league: League,
-    val season: Int)
-  extends Roster
-  with Coaches {
+    val seasonYear: Int) {
 
-  def stats = league.sport.stats
+  val record = SportsDatabase.getRecord(this)
+  val seasonInterval = seasonYear.toString + "-10-01" + "," + {seasonYear + 1}.toString + "-05-01"
+  val comments = Twitter.searchOverPeriod(name, seasonInterval)
+
+  SampleFile.sample("JSON from SportsDatabase.com: ", record)
 }
 
 object Team {
@@ -46,7 +33,7 @@ object Team {
   }
 
   /**
-    * Constructor overload that takes strings for each param.
+    * Constructor overload that accepts strings for every parameter.
     */
   def apply(
       name: String,

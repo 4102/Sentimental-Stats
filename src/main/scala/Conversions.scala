@@ -3,11 +3,9 @@ package term.project.SentimentalStats
 import java.time._
 import java.util.Date
 /**
-  * Miscellaneous functions and such.
-  *
-  * Note: the implicit conversions won't work unless this object is imported.
+  * Container for implicit conversions.
   */
-object ImplicitConversions {
+object Conversions {
 
   /**
     * Converts java.util.Date to the superior java.time.LocalDate

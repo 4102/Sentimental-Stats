@@ -7,6 +7,7 @@ import scala.sys.error
   * Valid leagues
   */
 object League {
+
   sealed abstract class League(val name: String, val sport: Sport)
 
   case object NCAABB extends League("ncaabb", Basketball)
