@@ -11,10 +11,9 @@ class Team(
     val league: League,
     val seasonYear: Int) {
 
-  val record = SportsDatabase.getRecord(this)
-  val seasonInterval = record.getSeasonInterval
-  println(seasonInterval.toString)
-  val comments = Twitter.searchInterval(name, seasonInterval)
+  val record: Record = SportsDatabase.getRecord(this)
+  val seasonInterval: Interval = record.getSeasonInterval
+  val comments: List[Comment] = Twitter.searchInterval(name, seasonInterval)
 }
 
 object Team {

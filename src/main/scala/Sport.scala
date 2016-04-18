@@ -6,7 +6,7 @@ package term.project.SentimentalStats
 object Sport {
 
   val soccerStats = List("")
-  val basketballStats = new File("stats.txt", true).readLines()
+  val basketballStats = StatsFile("basketballStats.txt").readLines()
   val footballStats = List("")
   val baseballStats = List("")
   val hockeyStats = List("")
