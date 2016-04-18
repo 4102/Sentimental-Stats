@@ -3,12 +3,11 @@ package term.project.SentimentalStats
 import twitter4j._
 import twitter4j.Query.ResultType._
 import collection.JavaConversions._
-import term.project.SentimentalStats.Conversions._
 
 /**
   * Query Twitter for tweets containing a term.
   */
-object Twitter extends TwitterAuthentication {
+object Twitter extends TwitterAuthentication with Time{
 
   /**
     * Searches for references to the search-term during an interval.

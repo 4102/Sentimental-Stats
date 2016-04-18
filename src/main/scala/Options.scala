@@ -11,7 +11,7 @@ trait Options {
   def getTeams(options: Map[String, String]): List[Team] = {
 
     val fileTeams = options.get(OptionKey.file)
-      .map(new CSVFile(_).data.toListOfTeams)
+      .map(new CsvFile(_).readTeams)
       .getOrElse(Nil)
 
     // val dbTeams = opt.get(dbKey).map(new DB.teamsFromDB).getOrElse(Nil) // implement
@@ -25,7 +25,7 @@ trait Options {
     }
 
     val allOptions = (fileTeams ::: dbTeams ::: manualTeam).distinct
-    val default = new CSVFile("teams.csv").data.toListOfTeams
+    val default = new CsvFile("teams.csv").readTeams
 
     if (allOptions.isEmpty) default else allOptions
   }

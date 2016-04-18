@@ -2,6 +2,7 @@ package term.project.SentimentalStats
 
 import java.io.{BufferedWriter, FileWriter}
 import scala.io.Source
+import term.project.SentimentalStats.FilePaths._
 
 /**
   * A class representing a file for IO operations.
@@ -10,7 +11,7 @@ import scala.io.Source
   *
   * @param append overwrite file if false, append if true.
   */
-class File(path: String, append: Boolean) {
+abstract class File(path: String, append: Boolean) {
 
   val writer = new BufferedWriter(new FileWriter(path, append))
 
@@ -38,19 +39,31 @@ class File(path: String, append: Boolean) {
   def close(): Unit = writer.close()
 }
 
+class PermanentFile(path: String) extends File(path, true)
+class TemporaryFile(path: String) extends File(path, false)
+
+
 /**
   * Retrieves data stored in csv format.
   */
-class CSVFile(path: String) extends File(path, true) {
+case class CsvFile(path: String) extends PermanentFile(path) with Csv {
 
-  val data = CSV(readLines())
+  val data = parse(readLines())
 
+  /**
+    * Converts parsed data to a list of teams.
+    */
+  def readTeams: List[Team] = {
+    data.map(field => Team(field(0), field(1), field(2), field(3)))
+  }
 }
+
+case class StatsFile(fileName: String) extends PermanentFile(settingsDir + fileName)
 
 /**
   * Contains keys and configuration options.
   */
-case object ConfigFile extends File("config.txt", true) {
+case object ConfigFile extends PermanentFile(settingsDir + "config.txt") {
 
   lazy val data = Pairs(readLines())
 }
@@ -58,7 +71,7 @@ case object ConfigFile extends File("config.txt", true) {
 /**
   * Stores raw textual data for easy inspection.
   */
-case object SampleFile extends File("sample.txt", false) {
+case object SampleFile extends TemporaryFile("sample.txt") {
 
   /**
     * Write n elements of a list to file, prefaced by a description.

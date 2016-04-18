@@ -9,21 +9,21 @@ package term.project.SentimentalStats
   * similar to a 'main' method, and also makes any command-line arguments
   * available through an "args" object, type Array[string]
   */
-object Main extends App with Options {
+object Main extends App with Options with Graphing {
 
   val options = Console.optionsFromArgs(args)
 
   val teams = getTeams(options)
 
+  // do sentimental analysis somewhere
 
+  graphAll(teams, options)
+
+  //end
 
   // each Team in teams has a field:
   // comments: List[Comment] with all the comments referencing them
   // record: with field statNames, a list of the stats tracked, and stat values, an array
-  // seasonInterval
+  // seasonInterval: two LocalDates on the first and last game of the season.
   // Each Comment in comments has two fields: a date and a message body
-
-  // calculateStats(teams)   // sentiment and statistical analysis
-
-  // presentResults()       // somehow
 }
