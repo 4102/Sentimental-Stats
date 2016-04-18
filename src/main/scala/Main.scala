@@ -9,18 +9,19 @@ package term.project.SentimentalStats
   * similar to a 'main' method, and also makes any command-line arguments
   * available through an "args" object, type Array[string]
   */
-object Main extends App {
+object Main extends App with Options {
 
-  val options = Options.optionsFromArgs(args)
+  val options = Console.optionsFromArgs(args)
 
-  val teams = Options.getTeams(options)
+  val teams = getTeams(options) // teams find their own stats and comments on construction
+
+
 
   // each Team in teams has a field:
   // comments: List[Comment] with all the comments referencing them
-  // record: String, which is the data from sportsdb in plain JSON
-  //
+  // record: with field statNames, a list of the stats tracked, and stat values, an array
+  // seasonInterval
   // Each Comment in comments has two fields: a date and a message body
-  // Each Record had a header and a bunch of columns with the numbers in them. The first one is dates of the games.
 
   // calculateStats(teams)   // sentiment and statistical analysis
 

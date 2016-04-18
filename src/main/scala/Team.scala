@@ -14,14 +14,12 @@ class Team(
   val record = SportsDatabase.getRecord(this)
   val seasonInterval = seasonYear.toString + "-10-01" + "," + {seasonYear + 1}.toString + "-05-01"
   val comments = Twitter.searchOverPeriod(name, seasonInterval)
-
-  SampleFile.sample("JSON from SportsDatabase.com: ", record)
 }
 
 object Team {
 
   /**
-    * Constructor for Team
+    * Constructs a Team.
     */
   def apply(
       name: String,
@@ -33,7 +31,7 @@ object Team {
   }
 
   /**
-    * Constructor overload that accepts strings for every parameter.
+    * Constructs a team from string for every field..
     */
   def apply(
       name: String,

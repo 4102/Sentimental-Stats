@@ -18,7 +18,7 @@ import scala.collection.convert.wrapAll._
   val pipeline: StanfordCoreNLP = new StanfordCoreNLP(props)
 
   def mainSentiment(input: String): Sentiment = Option(input) match {
-    case Some(text) if !text.isEmpty => extractSentiment(text)
+    case Some(text) if text.nonEmpty => extractSentiment(text)
     case None => throw new IllegalArgumentException("input can't be null or empty")
   }
 
