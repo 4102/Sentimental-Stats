@@ -31,11 +31,11 @@ As envisioned now, the Sentimental Stats program will have several modules:
 1. Download and install [IntelliJ](https://www.jetbrains.com/idea/#chooseYourEdition).
 2. Select `File > Open...` and navigate to the project if it doesn't detect it on start.
 3. Install the Scala plugin when prompted, or [do it manually](https://www.jetbrains.com/help/idea/2016.1/enabling-and-disabling-plugins.html).
-4. Add the `lib/` directory to your dependencies/classpath
-...* Go to `File > Project Structure > Modules` and select the `Dependencies` tab
-...* Select the `+` symbol, choose `jars or directories`,and finally navigate to `lib/`. Phew.
-...*...* You have to follow the same process to add the Play-Json library and Scala-Chart, whose jars are in the root of `lib`, but IntelliJ can't identify them on its own.
-5. The project doesn't reliably compile or run in IntelliJ, so I recommend using sbt instead.
+4. Add the `lib/` directory to your dependencies/classpath:
+  * Go to `File > Project Structure > Modules` and select the `Dependencies` tab
+  * Select the `+` symbol, choose `jars or directories`, and finally navigate to `lib/`. Phew.
+    * You have to follow the same process to add the Play-Json library and Scala-Chart, whose jars are in the root of `lib`, but IntelliJ can't identify them on its own.
+5. The project doesn't reliably compile or run in IntelliJ, so I strongly recommend using sbt for that instead.
 
 ### How to Use GitHub if you haven't before
 
