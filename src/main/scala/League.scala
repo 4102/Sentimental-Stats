@@ -1,6 +1,6 @@
 package term.project.SentimentalStats
 
-import term.project.SentimentalStats.Sport._
+import term.project.SentimentalStats.Sports._
 import scala.sys.error
 
 /**

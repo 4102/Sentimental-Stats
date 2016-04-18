@@ -9,7 +9,7 @@ package term.project.SentimentalStats
   * similar to a 'main' method, and also makes any command-line arguments
   * available through an "args" object, type Array[string]
   */
-object Main extends App with Options {
+object Main extends App with Options with Graphing {
 
   val options = Console.optionsFromArgs(args)
 
@@ -17,7 +17,7 @@ object Main extends App with Options {
 
   // do sentimental analysis somewhere
 
-  Grapher.graphAll(teams, options)
+  graphAll(teams, options)
 
   //end
 

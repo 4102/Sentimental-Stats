@@ -3,13 +3,13 @@ package term.project.SentimentalStats
 /**
   * Sports
   */
-object Sport {
+object Sports {
 
-  val soccerStats = List("")
+  val soccerStats = StatsFile("soccerStats.txt").readLines()
   val basketballStats = StatsFile("basketballStats.txt").readLines()
-  val footballStats = List("")
-  val baseballStats = List("")
-  val hockeyStats = List("")
+  val footballStats = StatsFile("footballStats.txt").readLines()
+  val baseballStats = StatsFile("baseballStats.txt").readLines()
+  val hockeyStats = StatsFile("hockeyStats.txt").readLines()
 
   sealed abstract class Sport(val name: String, val stats: List[String])
 
