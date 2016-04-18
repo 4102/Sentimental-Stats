@@ -15,7 +15,9 @@ object Conversions {
     date.toInstant.atZone(ZoneId.systemDefault()).toLocalDate
   }
 
-  case class Year(year: Int) {
-    require( year<10000 && year>999 ) // year should have 4 digits
+  def integerToLocalDate(i: Int) = {
+    val (y,md) = i.toString.splitAt(4)
+    val  (m,d) = md.splitAt(2)
+    y + "-" + m + "-" + d
   }
 }

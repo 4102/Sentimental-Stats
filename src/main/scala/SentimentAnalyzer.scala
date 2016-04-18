@@ -23,7 +23,7 @@ import scala.collection.convert.wrapAll._
   }
 
   def sentiment(input: String): List[(String, Sentiment)] = Option(input) match {
-    case Some(text) if !text.isEmpty => extractSentiments(text)
+    case Some(text) if text.nonEmpty => extractSentiments(text)
     case None => throw new IllegalArgumentException("input can't be null or empty")
   }
 
@@ -41,5 +41,4 @@ import scala.collection.convert.wrapAll._
       .map { case (sentence, tree) => (sentence.toString, Sentiment.toSentiment(RNNCoreAnnotations.getPredictedClass(tree))) }
       .toList
   }
-
 }

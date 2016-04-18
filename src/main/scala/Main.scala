@@ -13,7 +13,7 @@ object Main extends App with Options {
 
   val options = Console.optionsFromArgs(args)
 
-  val teams = getTeams(options) // teams find their own stats and comments on construction
+  val teams = getTeams(options)
 
 
 
