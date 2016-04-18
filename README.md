@@ -53,9 +53,9 @@ As envisioned now, the Sentimental Stats program will have several modules:
 
 ## Dependencies
 Sentimental Stats uses:
-...* Twitter4J
-...* Standford's NLP library
-...* Scala-Chart, a nice wrapper for JFreeChart
+  * Twitter4J
+  * Standford's NLP library
+  * Scala-Chart, a nice wrapper for JFreeChart
 
 ### Who works on what
 
