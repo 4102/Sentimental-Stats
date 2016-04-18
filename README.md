@@ -34,6 +34,7 @@ As envisioned now, the Sentimental Stats program will have several modules:
 4. Add the `lib/` directory to your dependencies/classpath
 ...* Go to `File > Project Structure > Modules` and select the `Dependencies` tab
 ...* Select the `+` symbol, choose `jars or directories`,and finally navigate to `lib/`. Phew.
+...*...* You have to follow the same process to add the Play-Json library and Scala-Chart, whose jars are in the root of `lib`, but IntelliJ can't identify them on its own.
 5. The project doesn't reliably compile or run in IntelliJ, so I recommend using sbt instead.
 
 ### How to Use GitHub if you haven't before
@@ -52,9 +53,9 @@ As envisioned now, the Sentimental Stats program will have several modules:
 
 ## Dependencies
 Sentimental Stats uses:
-...* MongoDB and its Scala Driver
 ...* Twitter4J
 ...* Standford's NLP library
+...* Scala-Chart, a nice wrapper for JFreeChart
 
 ### Who works on what
 

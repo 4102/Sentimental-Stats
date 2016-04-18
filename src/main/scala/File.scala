@@ -46,9 +46,16 @@ class TemporaryFile(path: String) extends File(path, false)
 /**
   * Retrieves data stored in csv format.
   */
-case class CSVFile(path: String) extends PermanentFile(path) {
+case class CsvFile(path: String) extends PermanentFile(path) with Csv {
 
-  val data = CSV(readLines())
+  val data = parse(readLines())
+
+  /**
+    * Converts parsed data to a list of teams.
+    */
+  def readTeams: List[Team] = {
+    data.map(field => Team(field(0), field(1), field(2), field(3)))
+  }
 }
 
 case class StatsFile(fileName: String) extends PermanentFile(settingsDir + fileName)

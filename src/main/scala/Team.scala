@@ -16,6 +16,9 @@ class Team(
   val comments: List[Comment] = Twitter.searchInterval(name, seasonInterval)
 }
 
+/**
+  * Companion object for team.
+  */
 object Team {
 
   /**

@@ -1,14 +1,10 @@
 package term.project.SentimentalStats
 
 import scalax.chart.api._
-import java.time._
-import java.time.temporal.ChronoUnit.MINUTES
 
-object Grapher {
+object Grapher extends Time {
 
   private val dir = "charts/"
-
-  def now = LocalDateTime.now.truncatedTo(MINUTES).toString
 
   object Format {
     sealed abstract class Format(val suffix: String)
@@ -19,7 +15,7 @@ object Grapher {
   }
 
   def fileName(team: Team) = {
-    team.name + team.seasonYear + "@" + now
+    team.name + team.seasonYear + "@" + currentDateTime
   }
 
   def graph(team: Team, options: Map[String, String]): Unit = {
@@ -29,7 +25,7 @@ object Grapher {
     val data = for (i <- 1 to 5) yield (i,i)
 
     val path = dir + fileName(team) + Format.Jpeg.suffix
-    val chart = XYLineChart(data)
+    val chart = XYLineChart(data, title)
     chart.saveAsPNG(path)
     //chart.show()
   }
