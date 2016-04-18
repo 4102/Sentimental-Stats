@@ -23,7 +23,7 @@ object League {
 
     leagues.find(leagueName.toUpperCase == _.toString) match {
       case Some(league) => league
-      case None => error("Could not identify league. Please re-enter.")
+      case None => error("Could not identify league.")
     }
   }
 }

@@ -1,9 +1,9 @@
 package term.project.SentimentalStats
 
 /**
-  * Stores and parses text formatted as key-value pairs
+  * Stores and parses text formatted as simple key-value pairs
   */
-case class Pairs(rawData: List[String], separator: Char) extends Formatted {
+case class Pairs(rawData: List[String], separator: Char) {
 
   /**
     * Parses the data
@@ -23,6 +23,9 @@ case class Pairs(rawData: List[String], separator: Char) extends Formatted {
 
 }
 
+/**
+  * Companion object of Pairs
+  */
 object Pairs {
 
   val defaultSeparator = '='

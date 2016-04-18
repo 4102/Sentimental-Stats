@@ -14,4 +14,10 @@ object Conversions {
   implicit def toLocalDate(date: Date): LocalDate = {
     date.toInstant.atZone(ZoneId.systemDefault()).toLocalDate
   }
+
+  def integerToLocalDate(i: Int) = {
+    val (y,md) = i.toString.splitAt(4)
+    val  (m,d) = md.splitAt(2)
+    y + "-" + m + "-" + d
+  }
 }

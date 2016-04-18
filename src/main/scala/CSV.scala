@@ -1,13 +1,10 @@
 package term.project.SentimentalStats
 
-trait Formatted {
-  def parsedData: List[Array[String]]
-}
 
 /**
   * Stores and parses CSV data
   */
-case class CSV(rawData: List[String]) extends Formatted {
+case class CSV(rawData: List[String]) {
 
   /**
     * Parses the data

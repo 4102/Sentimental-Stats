@@ -11,10 +11,11 @@ object SportsDatabase {
   val queryFormat = "/query.json?output=json&sdql="
   val apiKey = "&api_key=guest"
 
-  def getRecord(team: Team): String = {
+  def getRecord(team: Team): Record = {
 
-      val request = getQueryURL(team)
-      Source.fromURL(request).mkString
+    val request = getQueryURL(team)
+    val response = Source.fromURL(request).mkString
+    JsonParser.parseSportsDBRecord(response)
   }
 
   private def getQueryURL(team: Team): String = {
@@ -47,9 +48,9 @@ object SportsDatabase {
       val space = "%20"
     }
 
-    raw.replaceAll(",", Encoding.comma)
-      .replaceAll("@", Encoding.at)
-      .replaceAll("=", Encoding.equals)
-      .replaceAll(" ", Encoding.space)
+    raw.replace(",", Encoding.comma)
+      .replace("@", Encoding.at)
+      .replace("=", Encoding.equals)
+      .replace(" ", Encoding.space)
   }
 }

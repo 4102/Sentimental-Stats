@@ -13,7 +13,7 @@ object Twitter extends TwitterAuthentication {
   /**
     * Searches for references to the search-term during an interval.
     */
-  def searchOverPeriod(searchTerm: String, interval: String): List[Comment] = {
+  def searchInterval(searchTerm: String, interval: Interval): List[Comment] = {
 
       val query = setupQuery(searchTerm, interval)
 
@@ -25,13 +25,13 @@ object Twitter extends TwitterAuthentication {
   /**
     * Sets up a Twitter4J Query.
     */
-  private def setupQuery(term: String, interval: String): Query = {
-    val dates = interval.split(",")
+  private def setupQuery(term: String, interval: Interval): Query = {
+
     val query = new Query(term)
       query.setCount(100) // max
       query.setResultType(popular)
-      query.setSince(dates.head)
-      query.setUntil(dates.last)
+      query.setSince(interval.begin.toString)
+      query.setUntil(interval.end.toString)
     return query
   }
 
