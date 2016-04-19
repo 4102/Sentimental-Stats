@@ -1,5 +1,8 @@
 /**
-  * Created by Yagnesh on 4/13/2016
+  * Sentiments represented by the output of the sentiment analysis.
+  *
+  * Author: Yagnesh
+  * Last Modified: 4/13/2016
   */
 object Sentiment extends Enumeration {
   type Sentiment = Value

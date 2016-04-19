@@ -34,7 +34,7 @@ object Team {
   }
 
   /**
-    * Constructs a team from string for every field..
+    * Constructs a team when passed a string for every parameter.
     */
   def apply(
       name: String,

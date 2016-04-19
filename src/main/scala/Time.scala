@@ -6,13 +6,16 @@ import java.util.Date
 
 /**
   * Handles the parsing and creation of units of time.
+  *
+  * Author: David Prichard
+  * Last Modified: 4-19-2016
   */
 trait Time {
 
   def currentDateTime = LocalDateTime.now.truncatedTo(MINUTES).toString
 
   /**
-    * Converts and integer in yyymmdd format to a LocalDate
+    * Converts an integer in yyymmdd format to a LocalDate.
     */
   def integerToLocalDate(i: Int) = {
     val (y,md) = i.toString.splitAt(4)

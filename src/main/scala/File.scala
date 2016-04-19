@@ -2,12 +2,13 @@ package term.project.SentimentalStats
 
 import java.io.{BufferedWriter, FileWriter}
 import scala.io.Source
-import term.project.SentimentalStats.FilePaths._
 
 /**
   * A class representing a file for IO operations.
-  *
   * Wraps a buffered Java FileWriter for writing, which Scala's std lib omits.
+  *
+  * Author: David Prichard
+  * Last Modified: 4-19-2016
   *
   * @param append overwrite file if false, append if true.
   */
@@ -39,56 +40,11 @@ abstract class File(path: String, append: Boolean) {
   def close(): Unit = writer.close()
 }
 
+/**
+  * Files representing permanent (non-overwritable) and temporary (overwritable) files.
+  *
+  * Author: David Prichard
+  * Last Modified: 4-19-2016
+  */
 class PermanentFile(path: String) extends File(path, true)
 class TemporaryFile(path: String) extends File(path, false)
-
-
-/**
-  * Retrieves data stored in csv format.
-  */
-case class CsvFile(path: String) extends PermanentFile(path) with Csv {
-
-  val data = parse(readLines())
-
-  /**
-    * Converts parsed data to a list of teams.
-    */
-  def readTeams: List[Team] = {
-    data.map(field => Team(field(0), field(1), field(2), field(3)))
-  }
-}
-
-case class StatsFile(fileName: String) extends PermanentFile(settingsDir + fileName)
-
-/**
-  * Contains keys and configuration options.
-  */
-case object ConfigFile extends PermanentFile(settingsDir + "config.txt") {
-
-  lazy val data = Pairs(readLines())
-}
-
-/**
-  * Stores raw textual data for easy inspection.
-  */
-case object SampleFile extends TemporaryFile("sample.txt") {
-
-  /**
-    * Write n elements of a list to file, prefaced by a description.
-    */
-  def sampleN(description: String, data: List[String], n: Int): Unit = {
-
-    writer.write(description + "\n")
-    writeLines(data.take(n))
-    flush()
-  }
-
-  /**
-    * Write a string to file, prefaced by a description.
-    */
-  def sample(description: String, data: String): Unit = {
-
-    writer.write(description + "\n" + data)
-    flush()
-  }
-}

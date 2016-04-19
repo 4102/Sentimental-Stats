@@ -4,6 +4,9 @@ import scala.io.Source
 
 /**
   * Handles queries to sportsdatabase.com
+  *
+  * Author: David Prichard
+  * Last Modified: 4-19-2016
   */
 object SportsDatabase {
 

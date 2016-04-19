@@ -9,7 +9,10 @@ import edu.stanford.nlp.sentiment.SentimentCoreAnnotations
 import scala.collection.convert.wrapAll._
 
 /**
-  * Created by Yagnesh on 4/13/2016.
+  * Analyzes textual data, returning a number 0-4 representing expressed sentiment.
+  *
+  * Author: Yagnesh
+  * Last Modified: 4/13/2016.
   */
   object SentimentAnalyzer {
 
