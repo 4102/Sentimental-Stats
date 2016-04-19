@@ -6,6 +6,9 @@ import twitter4j.conf.ConfigurationBuilder
 /**
   * Configure a Twitter4J twitter client with OAuth credentials from a file.
   * Based on a tutorial: http://twitter4j.org/en/configuration.html
+  *
+  * Author: David Prichard
+  * Last Modified: 4-19-2016
   */
 trait TwitterAuthentication {
 

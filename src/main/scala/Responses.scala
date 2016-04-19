@@ -2,6 +2,9 @@ package term.project.SentimentalStats
 
 /**
   * Strings describing program options, state, etc.
+  *
+  * Author: David Prichard
+  * Last Modified: 4-19-2016
   */
 object Responses {
   val arguments = "Use sbt \"run arg1 arg2 etc\" to run with arguments. Enter 'help' for a list of commands."

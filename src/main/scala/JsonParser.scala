@@ -3,23 +3,30 @@ package term.project.SentimentalStats
 import play.api.libs.json._
 import scala.util.Try
 
+/**
+  * Parses Json, including the malformed output from sportsdatabase.com
+  *
+  * Author: David Prichard
+  * Last Modified: 4-19-2016
+  */
 object JsonParser {
 
+  /**
+    * Parse the Json from sportsdatabase as a Record.
+    */
   def parseSportsDBRecord(jsonString: String): Record = {
 
     val json = Json.parse(repairJsonString(jsonString))
-
     val columnNames = (json \ "headers").as[List[String]]
-    val malformedPart = (json \ "groups" \\ "columns").head
 
+    val malformedPart = (json \ "groups" \\ "columns").head
     val columns = parseMalformedJson(malformedPart)
 
     new Record(columnNames, columns)
   }
 
   /**
-    * SportsDatabase is the best and only resource for many stats,
-    * but to call the Json they produce malformed is a kindness.
+    * Parse the malformed Json from sportsdatabase.com
     */
   private def parseMalformedJson(json: JsValue): Array[Array[Option[Double]]] = {
 
@@ -36,6 +43,10 @@ object JsonParser {
     } yield parsed
   }
 
+  /**
+    * Correct the less-malformed Json output from sportsdatabase.com,
+    * so that it can be parsed as Json.
+    */
   private def repairJsonString(raw: String): String = {
     val start = raw.indexOf('{')
     val end = raw.lastIndexOf('}') + 1

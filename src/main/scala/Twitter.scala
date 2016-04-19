@@ -5,7 +5,10 @@ import twitter4j.Query.ResultType._
 import collection.JavaConversions._
 
 /**
-  * Query Twitter for tweets containing a term.
+  * Queries Twitter, using the Twitter4J library.
+  *
+  * Author: David Prichard
+  * Last Modified: 4-19-2016
   */
 object Twitter extends TwitterAuthentication with Time{
 

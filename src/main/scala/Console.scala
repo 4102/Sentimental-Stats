@@ -4,7 +4,10 @@ import scala.annotation.tailrec
 import scala.sys._
 
 /**
-  * Interprets and executes command-line arguments.
+  * Interprets and stores command-line arguments.
+  *
+  * Author: David Prichard
+  * Last Modified: 4-19-2016
   */
 object Console {
 

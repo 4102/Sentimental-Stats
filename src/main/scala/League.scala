@@ -4,7 +4,10 @@ import term.project.SentimentalStats.Sports._
 import scala.sys.error
 
 /**
-  * Valid leagues
+  * League names that sportsdatabase.com will accept as valid.
+  *
+  * Author: David Prichard
+  * Last Modified: 4-19-2016
   */
 object League {
 
@@ -17,6 +20,10 @@ object League {
   case object MLB extends League("mlb", Baseball)
   case object NHL extends League("nhl", Hockey)
 
+  /**
+    * Gets the league corresponding to a string, if possible,
+    * and throws an exception if not.
+    */
   def stringToLeague(leagueName: String): League = {
 
     val leagues = Array(NCAABB, NBA, NCAAF, NFL, MLB, NHL)

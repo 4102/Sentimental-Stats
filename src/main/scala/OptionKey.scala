@@ -2,6 +2,9 @@ package term.project.SentimentalStats
 
 /**
   * Keys used to store and retrieve options
+  *
+  * Author: David Prichard
+  * Last Modified: 4-19-2016
   */
 object OptionKey {
   val help = "help"

@@ -1,7 +1,10 @@
 package term.project.SentimentalStats
 
 /**
-  * Sports
+  * Valid sports, and the paths to files containing more information about them.
+  *
+  * Author: David Prichard
+  * Last Modified: 4-19-2016
   */
 object Sports {
 

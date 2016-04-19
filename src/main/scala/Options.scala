@@ -2,6 +2,9 @@ package term.project.SentimentalStats
 
 /**
   * Executes based on options interpreted from the console.
+  *
+  * Author: David Prichard
+  * Last Modified: 4-19-2016
   */
 trait Options {
 
