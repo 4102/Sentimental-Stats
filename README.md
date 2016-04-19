@@ -56,6 +56,7 @@ Sentimental Stats uses:
   * Twitter4J
   * Standford's NLP library
   * Scala-Chart, a nice wrapper for JFreeChart
+  * MongoDB, with its official Scala Driver.
 
 ### Who works on what
 
