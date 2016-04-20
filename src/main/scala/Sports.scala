@@ -1,24 +1,24 @@
 package term.project.SentimentalStats
 
 /**
-  * Valid sports, and the paths to files containing more information about them.
+  * Valid sports, and the paths to files containing a list of relevant metrics.
   *
   * Author: David Prichard
   * Last Modified: 4-19-2016
   */
 object Sports {
 
-  val soccerStats = StatsFile("soccerStats.txt").readLines()
-  val basketballStats = StatsFile("basketballStats.txt").readLines()
-  val footballStats = StatsFile("footballStats.txt").readLines()
-  val baseballStats = StatsFile("baseballStats.txt").readLines()
-  val hockeyStats = StatsFile("hockeyStats.txt").readLines()
+  val soccerMetrics = MetricsFile("soccerMetrics.txt").readLines()
+  val basketballMetrics = MetricsFile("basketballMetrics.txt").readLines()
+  val footballMetrics = MetricsFile("footballMetrics.txt").readLines()
+  val baseballMetrics = MetricsFile("baseballMetrics.txt").readLines()
+  val hockeyMetrics = MetricsFile("hockeyMetrics.txt").readLines()
 
-  sealed abstract class Sport(val name: String, val stats: List[String])
+  sealed abstract class Sport(val name: String, val metrics: List[String])
 
-  case object Soccer extends Sport("Soccer", soccerStats)
-  case object Basketball extends Sport("Basketball", basketballStats)
-  case object Football extends Sport("Football", footballStats)
-  case object Baseball extends Sport("Baseball", baseballStats)
-  case object Hockey extends Sport("Hockey", hockeyStats)
+  case object Soccer extends Sport("Soccer", soccerMetrics)
+  case object Basketball extends Sport("Basketball", basketballMetrics)
+  case object Football extends Sport("Football", footballMetrics)
+  case object Baseball extends Sport("Baseball", baseballMetrics)
+  case object Hockey extends Sport("Hockey", hockeyMetrics)
 }

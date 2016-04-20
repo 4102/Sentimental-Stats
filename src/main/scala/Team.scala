@@ -1,19 +1,29 @@
 package term.project.SentimentalStats
 
 import term.project.SentimentalStats.League._
+import term.project.SentimentalStats.SentimentAnalyzer._
 
 /**
-  * Team for a particular season.
+  * A team over a particular season.
+  *
+  * Author: David Prichard
+  * Last Modified: 4-19-2016
   */
 class Team(
     val name: String,
     val home: String,
     val league: League,
-    val seasonYear: Int) {
+    val seasonYear: Int)
+  extends Time {
 
   val record: Record = SportsDatabase.getRecord(this)
-  val seasonInterval: Interval = record.getSeasonInterval
-  val comments: List[Comment] = Twitter.searchInterval(name, seasonInterval)
+
+  val comments: List[Comment] = Twitter.searchInterval(name, record.seasonInterval)
+
+  val sentimentRecord = for {
+    comment <- comments
+    sentiment = mainSentiment(comment.text)
+  } yield Tuple2(comment.time, sentiment)
 }
 
 /**

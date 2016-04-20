@@ -18,15 +18,8 @@ object Main extends App with Options with Graphing {
 
   val teams = getTeams(options)
 
-  // do sentimental analysis somewhere
+
+
 
   graphAll(teams, options)
-
-  //end
-
-  // each Team in teams has a field:
-  // comments: List[Comment] with all the comments referencing them
-  // record: with field statNames, a list of the stats tracked, and stat values, an array
-  // seasonInterval: two LocalDates on the first and last game of the season.
-  // Each Comment in comments has two fields: a date and a message body
 }

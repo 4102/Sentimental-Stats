@@ -14,6 +14,9 @@ object SportsDatabase {
   val queryFormat = "/query.json?output=json&sdql="
   val apiKey = "&api_key=guest"
 
+  /**
+    * Query api.sportsdatabase.com and parse the results.
+    */
   def getRecord(team: Team): Record = {
 
     val request = getQueryURL(team)
@@ -21,10 +24,13 @@ object SportsDatabase {
     JsonParser.parseSportsDBRecord(response)
   }
 
+  /**
+    * Construct the URL that queries the database.
+    */
   private def getQueryURL(team: Team): String = {
 
     val queryBody = escapeForURL(
-      team.league.sport.stats.mkString(",")
+      team.league.sport.metrics.mkString(",")
         + "@team="
         + team.name
         + " and season="
@@ -40,7 +46,7 @@ object SportsDatabase {
   }
 
   /**
-    * Percent-encode an SDQL query for use in URL
+    * Percent-encode an raw "SDQL" query for use in URL.
     */
   private def escapeForURL(raw: String): String = {
 

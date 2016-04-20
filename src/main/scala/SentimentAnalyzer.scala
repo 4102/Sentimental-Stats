@@ -1,3 +1,5 @@
+package term.project.SentimentalStats
+
 import java.util.Properties
 import Sentiment.Sentiment
 

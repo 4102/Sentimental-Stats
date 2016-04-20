@@ -17,11 +17,26 @@ trait Time {
   /**
     * Converts an integer in yyymmdd format to a LocalDate.
     */
-  def integerToLocalDate(i: Int) = {
+  def integerToDateString(i: Int) = {
     val (y,md) = i.toString.splitAt(4)
     val  (m,d) = md.splitAt(2)
     y + "-" + m + "-" + d
   }
+
+  /**
+    * LocalDate from String
+    */
+  def localDateFromString(dateString: String): LocalDate = {
+    LocalDate.parse(integerToDateString(dateString.toInt))
+  }
+
+  /**
+    * Converts a LocalDate to an integer.
+    */
+  def LocalDatetoInteger(date: LocalDate) = {
+    date.toString.replace("-","").toInt
+  }
+
 
   /**
     * Converts java.util.Date to the superior java.time.LocalDate

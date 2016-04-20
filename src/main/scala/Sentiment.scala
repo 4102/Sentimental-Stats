@@ -1,3 +1,5 @@
+package term.project.SentimentalStats
+
 /**
   * Sentiments represented by the output of the sentiment analysis.
   *
