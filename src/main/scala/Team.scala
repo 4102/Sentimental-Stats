@@ -23,7 +23,7 @@ class Team(
   val sentimentRecord = for {
     comment <- comments
     sentiment = mainSentiment(comment.text)
-  } yield Tuple2(comment.time, sentiment)
+  } yield (comment.time, sentiment)
 }
 
 /**

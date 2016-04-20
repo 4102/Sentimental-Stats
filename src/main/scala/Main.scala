@@ -1,5 +1,10 @@
 package term.project.SentimentalStats
 
+import java.time.LocalDate
+
+import com.mongodb.casbah.Imports._
+import term.project.SentimentalStats.Sentiment.Sentiment
+
 /**
   * The entry point and main object that executes the program.
   *
@@ -16,10 +21,14 @@ object Main extends App with Options with Graphing {
 
   val options = Console.optionsFromArgs(args)
 
+  val mongoClient =  MongoClient("localhost", 27017)
+  val db = mongoClient("test")
+
   val teams = getTeams(options)
 
-
-
+  teams.head.sentimentRecord.foreach(println(_))
 
   graphAll(teams, options)
+
+
 }

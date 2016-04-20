@@ -4,6 +4,7 @@ import java.time.{ZoneId, LocalDate, LocalDateTime}
 import java.time.temporal.ChronoUnit._
 import java.util.Date
 
+
 /**
   * Handles the parsing and creation of units of time.
   *
@@ -24,6 +25,13 @@ trait Time {
   }
 
   /**
+    * LocalDate from Integer
+    */
+  def localDateFromInt(dateInt: Int): LocalDate = {
+    localDateFromString(integerToDateString(dateInt))
+  }
+
+  /**
     * LocalDate from String
     */
   def localDateFromString(dateString: String): LocalDate = {
@@ -37,6 +45,9 @@ trait Time {
     date.toString.replace("-","").toInt
   }
 
+  def toOldJavaDate(localDate: LocalDate) = {
+    Date.from(localDate.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant())
+  }
 
   /**
     * Converts java.util.Date to the superior java.time.LocalDate

@@ -1,18 +1,16 @@
 package term.project.SentimentalStats
 
-import java.time.ZoneId._
-import java.time.{ZoneId, LocalDate}
-import java.util.Date
-import java.util.Date.from
-import java.time.Instant
-import scalax.chart.api
+import java.time.LocalDate
+
 import scalax.chart.api._
+import scalax.chart.api
 
 import term.project.SentimentalStats.Sentiment.Sentiment
 
 
 /**
   * Creates graphs from structured data.
+  * This class is very unfinished.
   *
   * Author: David Prichard
   * Last Modified: 4-19-2016
@@ -20,8 +18,6 @@ import term.project.SentimentalStats.Sentiment.Sentiment
 trait Graphing extends Time {
 
   val timePrefix = '@'
-
-  //implicit private val theme = org.jfree.chart.StandardChartTheme.createDarknessTheme
 
   /**
     * Constructs a file name for a graph.
@@ -31,18 +27,16 @@ trait Graphing extends Time {
   }
 
   /**.
-    * Constructs a series from a particular metric 0for plotting on a graph.
+    * Constructs a series from a particular metric for plotting on a graph.
     */
-  private def getMetricSeries(team: Team, metricName: String): api.TimeSeries with Object = {
+  private def getMetricSeries(team: Team, metricName: String) = {
 
     val array = for {
       date <- team.record.getDates.flatten
       stat <- team.record.getByName(metricName).flatten
-      localDate = localDateFromString(integerToDateString(date.toInt))
-      utilDate = Date.from(localDate.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant())
-    } yield (utilDate, stat)
+    } yield (date, stat)
 
-    new TimeSeries(array.toSeq)
+    array.toSeq
   }
 
   /**.
@@ -51,13 +45,6 @@ trait Graphing extends Time {
   private def getSentimentSeries(team: Team): Seq[(LocalDate, Sentiment)] = {
 
     team.sentimentRecord.toSeq
-    /*
-    for {
-      s <- team.sentimentRecord
-      date = LocalDatetoInteger(s._1)
-      sentiment = s._2
-    } yield (date, sentiment)
-    */
   }
 
   /**
@@ -73,6 +60,8 @@ trait Graphing extends Time {
 
     val path = FilePaths.graphsDir + fileName(team) + ".jpg"
     chart.saveAsPNG(path)
+
+    chart.show()
   }
 
   /**

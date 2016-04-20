@@ -36,5 +36,4 @@ object Twitter extends TwitterAuthentication with Time{
       query.setUntil(interval.end.toString)
     return query
   }
-
 }

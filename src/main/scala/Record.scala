@@ -19,7 +19,7 @@ class Record(val statNames: List[String],
     val localDates = for {
       dateOption <- getByName("date")
       date <- dateOption
-      formattedDate = integerToLocalDate(date.toInt)
+      formattedDate = integerToDateString(date.toInt)
     } yield LocalDate.parse(formattedDate)
 
     new Interval(localDates.head, localDates.last)
